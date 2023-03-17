@@ -14,13 +14,13 @@ public class Exercise {
 
     private long id;
 
-    private List<Bodypart> bodyPart;
-    private List<Equipment> equipment;
+    private String bodyPart;
+    private String equipment;
 
     @JsonProperty("gif_url")
     private String exerciseGif;
 
     private String name;
-    private List<Target> target;
+    private String target;
 
 }
