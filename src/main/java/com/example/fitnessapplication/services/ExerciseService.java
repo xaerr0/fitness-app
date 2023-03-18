@@ -3,12 +3,14 @@ package com.example.fitnessapplication.services;
 import com.example.fitnessapplication.models.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @Service
 public class ExerciseService {
@@ -26,7 +28,7 @@ public class ExerciseService {
     private String exerciseListUrl;
 
 
-    public Exercise[] getAllExercises() {
+    public List<Exercise> getAllExercises() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-RapidAPI-Key", apiKey);
         headers.set("X-RapidAPI-Host", apiHost);
@@ -36,8 +38,9 @@ public class ExerciseService {
                 .build()
                 .toUri();
 
-        ResponseEntity<Exercise[]> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Exercise[].class);
+        ResponseEntity<List<Exercise>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
@@ -68,7 +71,7 @@ public class ExerciseService {
     }
 
 
-    public Exercise[] getExerciseByName(String name) {
+    public List<Exercise> getExerciseByName(String name) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-RapidAPI-Key", apiKey);
         headers.set("X-RapidAPI-Host", apiHost);
@@ -78,8 +81,9 @@ public class ExerciseService {
                 .build()
                 .toUri();
 
-        ResponseEntity<Exercise[]> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Exercise[].class);
+        ResponseEntity<List<Exercise>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                });
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
         } else {

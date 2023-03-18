@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.models;
 
+import com.example.fitnessapplication.services.BodypartService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,8 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Bodypart {
+public class BodyPartResponse {
 
-//    private Long id;
-    private String name;
+    private Bodypart[] bodyParts;
 }

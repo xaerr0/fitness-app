@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/exercises")
 public class ExerciseController {
 
 
@@ -19,21 +21,19 @@ public class ExerciseController {
     ExerciseService exerciseService;
 
     @ResponseBody
-    @GetMapping("/exercises")
-    public Exercise[] getAllExercises() {
+    @GetMapping()
+    public List<Exercise> getAllExercises() {
         return exerciseService.getAllExercises();
     }
     @ResponseBody
-    @GetMapping("/exercises/{id}")
+    @GetMapping("/{id}")
     public Exercise getExercise(@PathVariable Long id) {
         return exerciseService.getExercise(id);
     }
 
     @ResponseBody
-    @GetMapping("/exercises/name/{name}")
-    public Exercise[] getExercisesByName(@PathVariable String name) {
+    @GetMapping("/name/{name}")
+    public List<Exercise> getExercisesByName(@PathVariable String name) {
         return exerciseService.getExerciseByName(name);
     }
-
-
 }
