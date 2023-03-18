@@ -36,4 +36,10 @@ public class ExerciseController {
     public List<Exercise> getExercisesByName(@PathVariable String name) {
         return exerciseService.getExerciseByName(name);
     }
+
+    @ResponseBody
+    @GetMapping("/bodypart/{bodyPart}")
+    public List<Exercise> getExerciseByBodyPart(@PathVariable String bodyPart) {
+        return exerciseService.getByBodyPart(bodyPart);
+    }
 }

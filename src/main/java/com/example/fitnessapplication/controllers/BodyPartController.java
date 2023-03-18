@@ -20,7 +20,8 @@ public class BodyPartController {
 
     @ResponseBody
     @GetMapping
-    public Bodypart[] getAllBodyParts() {
+    public List<Bodypart> getAllBodyParts() {
         return bodypartService.getAllBodyParts();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.services;
 
+import com.example.fitnessapplication.models.Bodypart;
 import com.example.fitnessapplication.models.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -90,4 +91,25 @@ public class ExerciseService {
             return null;
         }
     }
+
+    public List<Exercise> getByBodyPart(String bodyPart) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-RapidAPI-Key", apiKey);
+        headers.set("X-RapidAPI-Host", apiHost);
+
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + bodyPart)
+                .build()
+                .toUri();
+
+        ResponseEntity<List<Exercise>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                });
+
+        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+            return response.getBody();
+        } else {
+            return null;
+        }
     }
+}
