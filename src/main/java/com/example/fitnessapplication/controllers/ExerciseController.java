@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -22,4 +23,17 @@ public class ExerciseController {
     public Exercise[] getAllExercises() {
         return exerciseService.getAllExercises();
     }
+    @ResponseBody
+    @GetMapping("/exercises/{id}")
+    public Exercise getExercise(@PathVariable Long id) {
+        return exerciseService.getExercise(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/exercises/name/{name}")
+    public Exercise[] getExercisesByName(@PathVariable String name) {
+        return exerciseService.getExerciseByName(name);
+    }
+
+
 }
