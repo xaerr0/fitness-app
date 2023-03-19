@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Bodypart {
 
-//    private Long id;
+    private Long id;
     private String bodyPart;
 }

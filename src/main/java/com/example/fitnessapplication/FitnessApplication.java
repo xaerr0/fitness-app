@@ -16,6 +16,7 @@ public class FitnessApplication {
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+
 		return builder.build();
 	}
 
