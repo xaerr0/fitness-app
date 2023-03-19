@@ -42,4 +42,16 @@ public class ExerciseController {
     public List<Exercise> getExerciseByBodyPart(@PathVariable String bodyPart) {
         return exerciseService.getByBodyPart(bodyPart);
     }
+
+    @ResponseBody
+    @GetMapping("/equipment/{equipment}")
+    public List<Exercise> getExerciseByEquipment(@PathVariable String equipment) {
+        return exerciseService.getByEquipment(equipment);
+    }
+
+    @ResponseBody
+    @GetMapping("/target/{target}")
+    public List<Exercise> getExerciseByTarget(@PathVariable String target) {
+        return exerciseService.getByTargetMuscles(target);
+    }
 }
