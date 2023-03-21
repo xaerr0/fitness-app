@@ -25,6 +25,7 @@ public class EquipmentService {
     @Value("${api_host}")
     private String apiHost;
 
+
     //List All Equipment
     public List<Equipment> getAllEquipment() {
         HttpHeaders headers = new HttpHeaders();
