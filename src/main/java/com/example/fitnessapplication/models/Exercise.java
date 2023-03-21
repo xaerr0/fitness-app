@@ -22,5 +22,4 @@ public class Exercise {
 
     private String name;
     private String target;
-
 }

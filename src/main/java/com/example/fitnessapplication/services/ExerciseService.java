@@ -1,6 +1,5 @@
 package com.example.fitnessapplication.services;
 
-import com.example.fitnessapplication.models.Bodypart;
 import com.example.fitnessapplication.models.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,7 +69,6 @@ public class ExerciseService {
             return null;
         }
     }
-
 
     public List<Exercise> getExerciseByName(String name) {
         HttpHeaders headers = new HttpHeaders();
@@ -155,6 +153,5 @@ public class ExerciseService {
         } else {
             return null;
         }
-
     }
 }
