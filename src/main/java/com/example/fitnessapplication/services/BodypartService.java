@@ -44,6 +44,4 @@ public class BodypartService {
             return null;
         }
     }
-
-
 }

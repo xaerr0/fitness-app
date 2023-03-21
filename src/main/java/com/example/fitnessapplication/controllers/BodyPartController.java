@@ -23,5 +23,4 @@ public class BodyPartController {
     public List<Bodypart> getAllBodyParts() {
         return bodypartService.getAllBodyParts();
     }
-
 }
