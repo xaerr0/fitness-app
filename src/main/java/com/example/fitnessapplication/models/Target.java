@@ -13,4 +13,8 @@ public class Target {
 
     private Long id;
     private String target;
+
+    public Target(String target) {
+        this.target = target;
+    }
 }

@@ -50,6 +50,7 @@ public class ExerciseService {
     }
 
     //TODO Fix this
+    // id is 4 digits long (10 = 0010)
     public Exercise getExercise(Long id) {
 //        String paddedId = String.format("%04d", id);
 
