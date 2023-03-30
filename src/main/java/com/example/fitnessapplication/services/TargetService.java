@@ -26,7 +26,28 @@ public class TargetService {
     private String apiHost;
 
     //List All Target Muscles
-    public List<Target> getAllTargetMuscles() {
+//    public List<Target> getAllTargetMuscles() {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("X-RapidAPI-Key", apiKey);
+//        headers.set("X-RapidAPI-Host", apiHost);
+//
+//        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+//        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/targetList")
+//                .build()
+//                .toUri();
+//
+//        ResponseEntity<List<Target>> response =
+//                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Target>>() {
+//                });
+//
+//        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+//            return response.getBody();
+//        } else {
+//            return null;
+//        }
+//    }
+
+    public Target[] getAllTargetMuscles() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-RapidAPI-Key", apiKey);
         headers.set("X-RapidAPI-Host", apiHost);
@@ -36,9 +57,8 @@ public class TargetService {
                 .build()
                 .toUri();
 
-        ResponseEntity<List<Target>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Target>>() {
-                });
+        ResponseEntity<Target[]> response =
+                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Target[].class);
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
