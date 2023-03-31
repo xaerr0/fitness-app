@@ -29,17 +29,12 @@ public class ExerciseService {
 
 
     public List<Exercise> getAllExercises() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises")
                 .build()
                 .toUri();
 
         ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
@@ -49,21 +44,13 @@ public class ExerciseService {
         }
     }
 
-    //TODO Fix this
-    // id is 4 digits long (10 = 0010)
     public Exercise getExercise(Long id) {
-//        String paddedId = String.format("%04d", id);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
-        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/exercise/" + id)
+        String paddedId = String.format("%04d", id);
+        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/exercise/" + paddedId)
                 .build()
                 .toUri();
 
-        ResponseEntity<Exercise> response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Exercise.class);
+        ResponseEntity<Exercise> response = restTemplate.exchange(uri, HttpMethod.GET, null, Exercise.class);
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
         } else {
@@ -72,17 +59,12 @@ public class ExerciseService {
     }
 
     public List<Exercise> getExerciseByName(String name) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/name/" + name)
                 .build()
                 .toUri();
 
         ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
                 });
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
@@ -92,17 +74,12 @@ public class ExerciseService {
     }
 
     public List<Exercise> getByBodyPart(String bodyPart) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + bodyPart)
                 .build()
                 .toUri();
 
         ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
@@ -114,17 +91,12 @@ public class ExerciseService {
 
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/target/" + target)
                 .build()
                 .toUri();
 
         ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
@@ -136,17 +108,12 @@ public class ExerciseService {
 
     //Exercise By Equipment
     public List<Exercise> getByEquipment(String equipment) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
                 .build()
                 .toUri();
 
         ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Exercise>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
