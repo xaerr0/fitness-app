@@ -11,6 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Equipment {
 
-    private Long id;
     private String equipment;
 }

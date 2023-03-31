@@ -24,9 +24,9 @@ public class Exercise {
     private String bodyPart;
     private String equipment;
 
-    @JsonProperty("gif_url")
-    private String exerciseGif;
-
     private String name;
     private String target;
+
+    @JsonProperty("gifUrl")
+    private String exerciseGif;
 }
