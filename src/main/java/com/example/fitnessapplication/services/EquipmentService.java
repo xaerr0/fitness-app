@@ -19,26 +19,14 @@ public class EquipmentService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${api_key}")
-    private String apiKey;
-
-    @Value("${api_host}")
-    private String apiHost;
-
-
     //List All Equipment
     public List<Equipment> getAllEquipment() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", apiKey);
-        headers.set("X-RapidAPI-Host", apiHost);
-
-        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipmentList")
                 .build()
                 .toUri();
 
         ResponseEntity<List<Equipment>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<Equipment>>() {
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Equipment>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
