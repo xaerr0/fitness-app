@@ -21,6 +21,7 @@ public class TargetController {
 
     @GetMapping
     public List<Target> getAllTargetMuscles() {
-        return List.of(targetService.getAllTargetMuscles());
+        return targetService.getAllTargetMuscles();
+
     }
 }
