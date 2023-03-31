@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -21,12 +18,19 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToMany
     private String bodyPart;
+
+    @ManyToMany
     private String equipment;
 
+    @OneToOne
     private String name;
+
+    @ManyToMany
     private String target;
 
     @JsonProperty("gifUrl")
+    @OneToOne
     private String exerciseGif;
 }
