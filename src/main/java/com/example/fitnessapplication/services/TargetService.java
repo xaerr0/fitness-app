@@ -1,10 +1,8 @@
 package com.example.fitnessapplication.services;
 
-import com.example.fitnessapplication.models.Bodypart;
 import com.example.fitnessapplication.models.Target;
 import com.example.fitnessapplication.repos.TargetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -13,9 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TargetService {
@@ -25,13 +21,6 @@ public class TargetService {
 
     @Autowired
     TargetRepo targetRepo;
-
-    @Value("${api_key}")
-    private String apiKey;
-
-    @Value("${api_host}")
-    private String apiHost;
-
 
     @PostConstruct
     public void pullAndPersistTargetMuscles() {

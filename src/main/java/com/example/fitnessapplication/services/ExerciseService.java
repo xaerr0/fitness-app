@@ -1,6 +1,7 @@
 package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.models.Exercise;
+import com.example.fitnessapplication.repos.ExerciseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.List;
 
@@ -18,15 +20,23 @@ public class ExerciseService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${api_key}")
-    private String apiKey;
+    @Autowired
+    ExerciseRepo exerciseRepo;
 
-    @Value("${api_host}")
-    private String apiHost;
 
-    @Value("${exerciseListUrl}")
-    private String exerciseListUrl;
+    @PostConstruct
+    public void pullAndPersistExercises() {
+        if (exerciseRepo.findAll().size() == 0) {
+            List<Exercise> exerciseList = getAllExercises();
+            saveAllExercises(exerciseList);
+        }
+    }
 
+    private void saveAllExercises(List<Exercise> exerciseList) {
+        for (Exercise exercise : exerciseList) {
+            exerciseRepo.save(exercise);
+        }
+    }
 
     public List<Exercise> getAllExercises() {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises")
@@ -45,6 +55,7 @@ public class ExerciseService {
     }
 
     public Exercise getExercise(Long id) {
+        // id is 4 digits i.e. 5 = 0005, 43 = 0043
         String paddedId = String.format("%04d", id);
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/exercise/" + paddedId)
                 .build()
