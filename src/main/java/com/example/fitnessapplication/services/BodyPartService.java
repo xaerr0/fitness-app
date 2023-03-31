@@ -1,6 +1,7 @@
 package com.example.fitnessapplication.services;
 
-import com.example.fitnessapplication.models.Bodypart;
+import com.example.fitnessapplication.models.BodyPart;
+import com.example.fitnessapplication.repos.BodyPartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -10,23 +11,40 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.List;
 
 @Service
-public class BodypartService {
+public class BodyPartService {
 
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    BodyPartRepo bodypartRepo;
 
-    public List<Bodypart> getAllBodyParts() {
+    @PostConstruct
+    public void pullAndPersistBodyParts() {
+        if (bodypartRepo.findAll().size() == 0) {
+            List<BodyPart> bodyPartList = getAllBodyParts();
+            saveAllBodyParts(bodyPartList);
+        }
+    }
+
+    private void saveAllBodyParts(List<BodyPart> bodyPartList) {
+        for (BodyPart bodypart : bodyPartList) {
+            bodypartRepo.save(bodypart);
+        }
+    }
+
+    public List<BodyPart> getAllBodyParts() {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPartList")
                 .build()
                 .toUri();
 
-        ResponseEntity<List<Bodypart>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Bodypart>>() {
+        ResponseEntity<List<BodyPart>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<BodyPart>>() {
                 });
 
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
