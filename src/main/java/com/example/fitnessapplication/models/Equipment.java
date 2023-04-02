@@ -5,11 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Equipment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToMany
     private String equipment;
+
+    public Equipment(String equipment) {
+        this.equipment = equipment;
+    }
 }

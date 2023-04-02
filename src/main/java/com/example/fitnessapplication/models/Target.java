@@ -5,11 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Target {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToMany
     private String target;
+
+    public Target(String target) {
+        this.target = target;
+    }
 }
