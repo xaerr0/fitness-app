@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
 
@@ -9,39 +9,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/generator.css">
+    <link rel="stylesheet" type="text/css" href="/css/generator.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
 
 <form>
-
-    <div class="row">
+    <div class="cards">
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body1">
                     <h4 class="card-title">Create Your Workout</h4>
                     <p class="card-text">How many minutes</p>
-                    <select class="form-select form-select-sm mt-3">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                    <select class="form-select form-select-sm mt-0">
+                        <option>30</option>
+                        <option>45</option>
+                        <option>60</option>
                     </select>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">Select Equipment</p>
+
+                    <select class="form-select form-select-sm mt-3" th:name="equipmentId">
+                        <option th:if="${equipmentList.isEmpty()}">None Available</option>
+                        <option th:each="equipment : ${equipmentList}" th:value="${equipment.id}"
+                        th:text="${equipment.toString()}"></option>
+                    </select>
+
+                    <p class="card-text">Select Target Muscles</p>
+                    <select class="form-select form-select-sm mt-3" th:name="targetId">
+                        <option th:if="${targetList.isEmpty}">None Available</option>
+                        <option th:each="target : ${targetList}" th:value="${target.id}"
+                                th:text="${target.toString}"></option>
+
+                    </select>
+                    <p class="card-text">Select Workout Type</p>
+
+                    <select class="form-select form-select-sm mt-3">
+
+                        <option>FullBody</option>
+                        <option>Upper Body</option>
+                        <option>Lower Body</option>
+                        <option>Cardio</option>
+                    </select>
+                    <a href="#" class="btn btn-primary">Generate Workout!</a>
                 </div>
             </div>
+
+
         </div>
 
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body2">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <h5 class="card-title">Your Generated Workout!</h5>
+                    <p class="card-text"></p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
         </div>
+
     </div>
 </form>
 
