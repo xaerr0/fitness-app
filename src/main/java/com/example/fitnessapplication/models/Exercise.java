@@ -18,19 +18,19 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany
+//    @OneToOne
     private String bodyPart;
 
-    @ManyToMany
+//    @OneToOne
     private String equipment;
 
-    @OneToOne
+//    @OneToOne
     private String name;
 
-    @ManyToMany
+//    @OneToOne
     private String target;
 
     @JsonProperty("gifUrl")
-    @OneToOne
+//    @OneToOne
     private String exerciseGif;
 }

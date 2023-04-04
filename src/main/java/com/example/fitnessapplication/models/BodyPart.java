@@ -18,10 +18,15 @@ public class BodyPart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+//    @OneToOne
     private String bodyPart;
 
     public BodyPart(String bodyPart) {
         this.bodyPart = bodyPart;
+    }
+
+    @Override
+    public String toString() {
+        return bodyPart;
     }
 }

@@ -18,10 +18,15 @@ public class Target {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+//    @OneToOne
     private String target;
 
     public Target(String target) {
         this.target = target;
+    }
+
+    @Override
+    public String toString() {
+        return target;
     }
 }
