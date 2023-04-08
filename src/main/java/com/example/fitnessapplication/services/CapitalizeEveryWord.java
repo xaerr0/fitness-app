@@ -9,4 +9,9 @@ public class CapitalizeEveryWord {
         }
         return String.join(" ", words);
     }
+
+    public String capitalizeEveryWord2(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
 }
