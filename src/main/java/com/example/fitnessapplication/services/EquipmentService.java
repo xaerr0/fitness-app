@@ -4,9 +4,10 @@ package com.example.fitnessapplication.services;
 import com.example.fitnessapplication.models.Equipment;
 import com.example.fitnessapplication.repos.EquipmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -48,6 +49,8 @@ public class EquipmentService {
                 restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Equipment>>() {
                 });
 
+        CapitalizeEveryWord capitalizeEveryWord = new CapitalizeEveryWord();
+        capitalizeEveryWord.capitalizeEveryWord(String.valueOf(response.getBody()));
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
         } else {
