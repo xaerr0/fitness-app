@@ -134,4 +134,20 @@ public class ExerciseService {
             return null;
         }
     }
+
+    public List<Exercise> getUpperBodyExercise(List<String> upperBodyParts) {
+        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/upperBody/" + upperBodyParts)
+               .build()
+               .toUri();
+
+        ResponseEntity<List<Exercise>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+                });
+
+        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody()!= null) {
+            return response.getBody();
+        } else {
+            return null;
+        }
+    }
 }
