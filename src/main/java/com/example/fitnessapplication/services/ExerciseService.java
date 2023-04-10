@@ -135,6 +135,7 @@ public class ExerciseService {
         }
     }
 
+    //TODO don't think this is correct
     public List<Exercise> getUpperBodyExercise(List<String> upperBodyParts) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/upperBody/" + upperBodyParts)
                .build()
