@@ -13,7 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ExerciseService {
@@ -137,18 +139,20 @@ public class ExerciseService {
 
     //TODO don't think this is correct
     public List<Exercise> getUpperBodyExercise(List<String> upperBodyParts) {
-        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/upperBody/" + upperBodyParts)
-               .build()
-               .toUri();
+        for (String bodyPart : upperBodyParts) {
+            ResponseEntity<List<Exercise>> response =
+                    restTemplate.exchange("https://exercisedb.p.rapidapi.com/exercises/bodypart/" + bodyPart,
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+                            });
+            List<Exercise> exercises = new ArrayList<>(Objects.requireNonNull(response.getBody()));
 
-        ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
-                });
 
-        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody()!= null) {
-            return response.getBody();
-        } else {
-            return null;
+            if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+                return exercises;
+            } else {
+                return null;
+            }
         }
+        return null;
     }
 }
