@@ -17,21 +17,21 @@
 <body>
 
 <form>
-    
-    <div class="cards">
-        
-        <div class="col-sm-4" >
-            <div class="card" style="width:35rem;">
-                
-                <div class="card-body1">
-                    <h4 class="card-title">Create Your Workout</h4>
-                    <p class="card-text">How many minutes</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card-body">
+                    <img class="card-img-top" src="" alt="">
+  
+                    <div class="card-body1">
+                        <h5 class="card-title">Create Your Workout</h5>
+                        <p class="card-text">How many minutes</p>
                     <select class="form-select form-select-sm mt-0">
                         <option>30</option>
                         <option>45</option>
                         <option>60</option>
                     </select>
-                    <p class="card-text">Select Equipment</p>
+                <p class="card-text">Select Equipment</p>
 
                     <select class="form-select form-select-sm mt-3" th:name="equipmentId">
                         <option th:if="${equipmentList.isEmpty()}">None Available</option>
@@ -50,28 +50,35 @@
 
                     <select class="form-select form-select-sm mt-3">
 
-                        <option>FullBody</option>
+                        <option>Full Body</option>
                         <option>Upper Body</option>
                         <option>Lower Body</option>
                         <option>Cardio</option>
                     </select>
-                    <a href="#" class="btn btn-primary">Generate Workout!</a>
+  
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            Generate Workout
+                        </a>
+                        
+                    </div>
                 </div>
             </div>
-
-
-        </div>
-
-        <div class="col-sm-8">
-            <div class="card" style="width:50rem;">
-                <div class="card-body2">
-                    <h5 class="card-title">Your Generated Workout!</h5>
-                    <p class="card-text"></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="" alt="">
+  
+                    <div class="card-body1">
+                        <h5 class="card-title">Your Generated Workout!</h5>
+                        <p class="card-text">Workout here</p>
+                          
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            Reset
+                        </a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </form>
 
