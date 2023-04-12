@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
     List<Exercise> findAll();
+//    List<Exercise> getUpperBodyExercises();
 
 
 }

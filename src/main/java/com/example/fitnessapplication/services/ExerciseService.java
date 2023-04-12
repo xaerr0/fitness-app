@@ -138,21 +138,17 @@ public class ExerciseService {
     }
 
     //TODO don't think this is correct
-    public List<Exercise> getUpperBodyExercise(List<String> upperBodyParts) {
+    public List<Exercise> getUpperBodyExercises(List<String> upperBodyParts) {
+        List<Exercise> exercises = new ArrayList<>();
         for (String bodyPart : upperBodyParts) {
-            ResponseEntity<List<Exercise>> response =
-                    restTemplate.exchange("https://exercisedb.p.rapidapi.com/exercises/bodypart/" + bodyPart,
-                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
-                            });
-            List<Exercise> exercises = new ArrayList<>(Objects.requireNonNull(response.getBody()));
-
-
-            if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
-                return exercises;
-            } else {
-                return null;
-            }
+            ResponseEntity<List<Exercise>> response = restTemplate.exchange(
+                    "https://exercisedb.p.rapidapi.com/exercises/bodypart/" + bodyPart, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Exercise>>() {
+            });
+//if all good
+            exercises.addAll(response.getBody());
         }
-        return null;
+
+        return exercises;
     }
 }

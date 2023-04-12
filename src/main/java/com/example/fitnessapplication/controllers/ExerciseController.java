@@ -3,11 +3,10 @@ package com.example.fitnessapplication.controllers;
 import com.example.fitnessapplication.models.Exercise;
 import com.example.fitnessapplication.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -52,4 +51,10 @@ public class ExerciseController {
     public List<Exercise> getExerciseByTarget(@PathVariable String target) {
         return exerciseService.getByTargetMuscles(target);
     }
-}
+
+    @ResponseBody
+    @GetMapping("/type/upperbody")
+    public List<Exercise> getUpperBodyExercises(List<String> upperBody) {
+        return exerciseService.getUpperBodyExercises(upperBody);
+    }
+    }
