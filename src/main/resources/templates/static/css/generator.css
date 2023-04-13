@@ -1,0 +1,39 @@
+.card-body1 {
+    background:linear-gradient(135deg, #E3E3E3 0%,#a6abb0 100%);
+    text-align: center;
+    padding: 80px;
+    border-radius: 20%;
+    margin-left: 10rem;
+
+}
+
+.card-body2 {
+    background-color:linear-gradient(135deg, #E3E3E3 0%,#a6abb0 100%);
+    text-align: center;
+    padding: 80px;
+    margin-left: 10rem;
+    border-radius: 20%;
+    
+}
+
+.form-select {
+    size-adjust: 50%;
+}
+
+.btn {
+    margin-top: 50px;
+}
+
+.cards {
+    display: flex;
+}
+
+body {
+    background: #e8cbc0;
+    background: -webkit-linear-gradient(to right, #e8cbc0, #ffffff);
+    background: linear-gradient(to right, #ffffff, #ffffff);
+    min-height: 100vh;
+}
+
+
+
