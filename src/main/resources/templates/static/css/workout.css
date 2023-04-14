@@ -1,0 +1,68 @@
+
+.center {
+  transform: scale(1.5);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-card {
+  width: 550px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 300ms;
+  margin-bottom: 2rem;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.article-card img {
+  width: 120px;
+  height: 120px;
+  float: right;
+  /* margin-right: 30%; */
+}
+
+
+
+.article-card .container-fluid {
+  position: center;
+}
+
+.article-card .content {
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  padding: 30px 20px 20px 20px;
+  height: auto;
+  bottom: 0;
+  background: linear-gradient(to right, #adc2be, #41594c67);
+}
+
+.article-card .date,
+.article-card .title {
+  margin: 0;
+}
+
+.article-card .exercise-num {
+  font-size: 17px;
+  font-weight: bold;
+  color: #29392e;
+  margin-bottom: 0px;
+}
+
+.article-card .exercise-name {
+  font-size: 20px;
+  color: #202322;
+  font-weight: bold;
+
+  margin-bottom: 35px;
+}
