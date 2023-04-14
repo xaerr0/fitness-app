@@ -1,4 +1,8 @@
+tr {
+    border: 3px solid black;
+  border-radius: 10px;
 
+}
 table.boostrap4_table_head_dark_striped_rounded_with_shadow {
     font-size: 1rem;
     font-weight: 400;
@@ -59,6 +63,8 @@ table.boostrap4_table_head_dark_striped_rounded_with_shadow tr:last-of-type td:f
 table.boostrap4_table_head_dark_striped_rounded_with_shadow tr:last-of-type td:last-of-type {
     border-bottom-right-radius: 10px;
 }
+
+
 
 
 
