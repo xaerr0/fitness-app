@@ -1,154 +1,130 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="static\css\generator.css" />
-    <link rel="stylesheet" type="text/css" href="static\css\workout.css" />
+    <link th:href="@{/css/generator.css}" href="/css/generator.css"
+          rel="stylesheet" type="text/css"/>
+<!--    <link rel="stylesheet" type="text/css" href="/css/generator.css"/>-->
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"/>
-  </head>
-  <body>
-    <form>
-      <div class="row">
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous"/>
+</head>
+<body>
+<form>
+    <div class="row">
         <div class="col-lg-12 mb-8">
-          <!-- <div class="card-body"> -->
-            <img class="card-img-top" src="" alt="" />
+            <!-- <div class="card-body"> -->
+            <img class="card-img-top" src="" alt=""/>
 
             <div class="card-body1">
-              <h5 class="card-title">Create Your Workout</h5>
-              <p class="card-text">How many minutes</p>
-              <select class="form-select form-select-sm mt-3">
-                <option>30</option>
-                <option>45</option>
-                <option>60</option>
-              </select>
+                <h5 class="card-title">Create Your Workout</h5>
+                <p class="card-text">How many minutes</p>
+                <select class="form-select form-select-sm mt-3">
+                    <option>30</option>
+                    <option>45</option>
+                    <option>60</option>
+                </select>
 
 
-              <p class="card-text">Select Equipment</p>
+                <p class="card-text">Select Target Muscles</p>
+                <select
+                        class="form-select form-select-sm mt-3"
+                        th:name="targetId"
+                >
+                    <option th:if="${targetList.isEmpty}">None Available</option>
+                    <option
+                            th:each="target : ${targetList}"
+                            th:value="${target.id}"
+                            th:text="${target.toString}"
+                    ></option>
+                </select>
 
-              <select
-                class="form-select form-select-sm mt-3"
-                th:name="equipmentId"
-              >
-                <option th:if="${equipmentList.isEmpty()}">
-                  None Available
-                </option>
-                <option
-                  th:each="equipment : ${equipmentList}"
-                  th:value="${equipment.id}"
-                  th:text="${equipment.toString()}"
-                ></option>
-              </select>
+                <p class="card-text">Select Workout Type</p>
 
-
-
-
-              <p class="card-text">Select Target Muscles</p>
-              <select
-                class="form-select form-select-sm mt-3"
-                th:name="targetId"
-              >
-                <option th:if="${targetList.isEmpty}">None Available</option>
-                <option
-                  th:each="target : ${targetList}"
-                  th:value="${target.id}"
-                  th:text="${target.toString}"
-                ></option>
-              </select>
-              <p class="card-text">Select Workout Type</p>
-
-              <select class="form-select form-select-sm mt-3">
-                <option>Full Body</option>
-                <option>Upper Body</option>
-                <option>Lower Body</option>
-                <option>Cardio</option>
-              </select>
+                <select class="form-select form-select-sm mt-3">
+                    <option>Full Body</option>
+                    <option>Upper Body</option>
+                    <option>Lower Body</option>
+                    <option>Cardio</option>
+                </select>
 
 
-              <p class="card-text">Select Equipment</p>
-              <select
-                class="form-select form-select-sm mt-3"
-                th:name="equipmentId"
-              >
-                <option th:if="${equipmentList.isEmpty()}">
-                  None Available
-                </option>
-                <th:block
-                  th:each="equipment : ${equipmentList}"
-                  <input type="checkbox" name="checkbox" th:value="${equipment.id}"/>
-                  <label th:text="${equipment.toString()}"
-                ></th:block>
-              </select>
+                <p class="card-text">Select Equipment</p>
+                <label th:if="${equipmentList.isEmpty()}">
+                    None Available
+                </label>
+                <th:block th:each="equipment : ${equipmentList}">
+                    <input type="checkbox" class="form-check-input" name="equipment" th:value="${equipment.id}"/>
+                    <label th:text="${equipment.toString()}"></label>
+                </th:block>
 
-              <p class="card-text">Select Available Equipment</p>
-             <div class="form-check-inline">
-      <label class="form-check-label" for="check1">
-        <input type="checkbox" class="form-check-input" id="check1" name="vehicle1" value="something" checked>Option 1
-      </label>
-    </div>
-    <div class="form-check-inline">
-      <label class="form-check-label" for="check2">
-        <input type="checkbox" class="form-check-input" id="check2" name="vehicle2" value="something">Option 2
-      </label>
-    </div>
-    
-              
 
-              <a href="#" class="btn btn-outline-primary btn-sm">
-                Generate Workout
-              </a>
+                <p class="card-text">Select Available Equipment</p>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="check1">
+                        <input type="checkbox" class="form-check-input" id="check1" name="vehicle1"
+                               value="something" checked>Option 1
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="check2">
+                        <input type="checkbox" class="form-check-input" id="check2" name="vehicle2"
+                               value="something">Option 2
+                    </label>
+                </div>
+
+
+                <a href="#" class="btn btn-outline-primary btn-sm">
+                    Generate Workout
+                </a>
             </div>
-          <!-- </div> -->
+            <!-- </div> -->
         </div>
-      </div>
-    </form>
+    </div>
+</form>
 
-    
-    <div class="col-lg-6 mb-4">
-      <div class="article-card">
-        <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif" />
-        <div class="content">
-          <!-- Exercise # -->
-          <p class="exercise-num">Exercise 1</p>
-          <!-- Exercise Name -->
-          <p class="exercise-name">Kettlebell One Arm Row</p>
-        </div>
-      </div>
-      <div class="article-card">
-        <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif" />
-        <div class="content">
-          <!-- Exercise # -->
-          <p class="exercise-num">Exercise 2</p>
-          <!-- Exercise Name -->
-          <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-      </div>
 
-      <a href="#" class="btn btn-outline-primary btn-sm"> Reset </a>
+<div class="col-lg-6 mb-4">
+    <div class="article-card">
+        <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>
+        <div class="content">
+            <!-- Exercise # -->
+            <p class="exercise-num">Exercise 1</p>
+            <!-- Exercise Name -->
+            <p class="exercise-name">Kettlebell One Arm Row</p>
+        </div>
+    </div>
+    <div class="article-card">
+        <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
+        <div class="content">
+            <!-- Exercise # -->
+            <p class="exercise-num">Exercise 2</p>
+            <!-- Exercise Name -->
+            <p class="exercise-name">Lever Preacher Curl</p>
+        </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <a href="#" class="btn btn-outline-primary btn-sm"> Reset </a>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>
