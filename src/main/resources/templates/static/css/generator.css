@@ -1,8 +1,9 @@
 .card-body1 {
-    
+    max-width: 80em;
+    margin: 0 auto;
     background:linear-gradient(135deg, #E3E3E3 0%,#a6abb0 100%);
     text-align: center;
-    padding: 80px;
+    padding: 20px;
     border-radius: 20%;
     margin-left: auto;
     border: 2px solid red;
@@ -36,5 +37,9 @@ body {
     min-height: 100vh;
 }
 
+p {
+    font-size: 18px;
+    padding-top: ;
+}
 
 

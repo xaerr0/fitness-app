@@ -22,17 +22,19 @@
     <form>
       <div class="row">
         <div class="col-lg-12 mb-8">
-          <div class="card-body">
+          <!-- <div class="card-body"> -->
             <img class="card-img-top" src="" alt="" />
 
             <div class="card-body1">
               <h5 class="card-title">Create Your Workout</h5>
               <p class="card-text">How many minutes</p>
-              <select class="form-select form-select-sm mt-0">
+              <select class="form-select form-select-sm mt-3">
                 <option>30</option>
                 <option>45</option>
                 <option>60</option>
               </select>
+
+
               <p class="card-text">Select Equipment</p>
 
               <select
@@ -48,6 +50,9 @@
                   th:text="${equipment.toString()}"
                 ></option>
               </select>
+
+
+
 
               <p class="card-text">Select Target Muscles</p>
               <select
@@ -70,6 +75,22 @@
                 <option>Cardio</option>
               </select>
 
+
+              <p class="card-text">Select Equipment</p>
+              <select
+                class="form-select form-select-sm mt-3"
+                th:name="equipmentId"
+              >
+                <option th:if="${equipmentList.isEmpty()}">
+                  None Available
+                </option>
+                <th:block
+                  th:each="equipment : ${equipmentList}"
+                  <input type="checkbox" name="checkbox" th:value="${equipment.id}"/>
+                  <label th:text="${equipment.toString()}"
+                ></th:block>
+              </select>
+
               <p class="card-text">Select Available Equipment</p>
              <div class="form-check-inline">
       <label class="form-check-label" for="check1">
@@ -81,22 +102,19 @@
         <input type="checkbox" class="form-check-input" id="check2" name="vehicle2" value="something">Option 2
       </label>
     </div>
-    <div class="form-check-inline">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" disabled>Option 3
-      </label>
-    </div>
+    
               
 
               <a href="#" class="btn btn-outline-primary btn-sm">
                 Generate Workout
               </a>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </form>
 
+    
     <div class="col-lg-6 mb-4">
       <div class="article-card">
         <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif" />
