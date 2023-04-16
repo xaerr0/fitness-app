@@ -1,48 +1,48 @@
-
 /*  Form */
 .card-body1 {
-    max-width: 80em;
-    margin: 0 auto;
-    background:linear-gradient(135deg, #E3E3E3 0%,#a6abb0 100%);
-    text-align: center;
-    padding: 20px;
-    border-radius: 20%;
-    margin-left: auto;
-    border: 2px solid red;
+  max-width: 80em;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #e3e3e3 0%, #a6abb0 100%);
+  text-align: center;
+  padding: 20px;
+  border-radius: 20%;
+  margin-left: auto;
+  border: 2px solid red;
 }
 
 .card-body2 {
-    background-color:linear-gradient(135deg, #E3E3E3 0%,#a6abb0 100%);
-    text-align: center;
-    padding: 80px;
-    margin-left: 10rem;
-    border-radius: 20%;
-
+  background-color: linear-gradient(135deg, #e3e3e3 0%, #a6abb0 100%);
+  text-align: center;
+  padding: 80px;
+  margin-left: 10rem;
+  border-radius: 20%;
 }
 
 .form-select {
-    size-adjust: 50%;
+  size-adjust: 50%;
 }
 
 .btn {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .cards {
-    display: flex;
+  display: flex;
 }
 
 body {
-    background: #e8cbc0;
-    background: -webkit-linear-gradient(to right, #e8cbc0, #ffffff);
-    background: linear-gradient(to right, #ffffff, #ffffff);
-    min-height: 100vh;
+  background: #e8cbc0;
+  background: -webkit-linear-gradient(to right, #e8cbc0, #ffffff);
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  min-height: 100vh;
 }
 
 p {
-    font-size: 18px;
-    padding-top: ;
+  font-size: 18px;
 }
+
+
+
 
 
 /*  Generated Workout */
@@ -55,26 +55,22 @@ p {
   justify-content: center;
 }
 
-.col-lg-6.mb-4 {
-  border: 2px solid red;
-
-  display: inline-block;
-
+.col-lg-4.mb-2 {
+  border: 2px solid red;  
+  /* overflow: hidden; */
   margin: auto;
   position: absolute;
-  top: 50%;
+  top: 800px;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 .article-card {
+  border: 2px solid red;
 
-  display: inline-block;
-
+  /* display: inline-block; */
   margin: auto;
-  width: 550px;
-  height: 120px;
+  max-width: 35rem;
   border-radius: 12px;
   overflow: hidden;
   position: relative;
@@ -94,6 +90,7 @@ p {
   height: 120px;
   float: right;
   /* margin-right: 30%; */
+  
 }
 
 .article-card .container-fluid {
@@ -102,13 +99,18 @@ p {
 
 .article-card .content {
   box-sizing: border-box;
-  width: 100%;
-  position: absolute;
-  padding: 30px 20px 20px 20px;
+  max-width: 40rem;
   height: auto;
-  bottom: 0;
+  overflow: hidden;
+  position: relabative;
+  padding: 20px 20px 20px 20px;
   background: linear-gradient(to right, #adc2be, #41594c67);
+  border: 2px solid blue;
+  z-index: 1;
+  
 }
+
+
 
 .article-card .date,
 .article-card .title {
@@ -128,4 +130,12 @@ p {
   font-weight: bold;
 
   margin-bottom: 35px;
+}
+
+#reset-btn{
+  background-color: #638575;
+  color:#000000;
+  position: relative;
+  left: 50%;
+  
 }
