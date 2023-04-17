@@ -10,6 +10,7 @@ import java.util.List;
 public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
     List<Exercise> findAll();
 //    List<Exercise> getUpperBodyExercises();
+    List<Exercise> findTop10ExercisesByEquipment(String equipment);
 
 
 }

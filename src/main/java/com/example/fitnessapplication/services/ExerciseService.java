@@ -151,4 +151,19 @@ public class ExerciseService {
 
         return exercises;
     }
+
+    public List<Exercise> getTop10ExercisesByEquipment(String equipment) {
+        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
+                .build()
+                .toUri();
+
+        ResponseEntity<List<Exercise>> response =
+                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+                });
+        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+            return response.getBody();
+        } else {
+            return null;
+        }
+    }
 }
