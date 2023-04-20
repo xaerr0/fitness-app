@@ -20,6 +20,7 @@ import java.util.List;
 @EnableJpaRepositories(basePackages = {"com.example.fitnessapplication.repos"})
 public class FitnessApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FitnessApplication.class, args);
 	}
