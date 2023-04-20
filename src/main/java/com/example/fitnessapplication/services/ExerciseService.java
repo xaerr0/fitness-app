@@ -3,10 +3,12 @@ package com.example.fitnessapplication.services;
 import com.example.fitnessapplication.models.Exercise;
 import com.example.fitnessapplication.repos.ExerciseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,10 +16,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Component
+
 public class ExerciseService {
 
     @Autowired
@@ -25,6 +30,12 @@ public class ExerciseService {
 
     @Autowired
     ExerciseRepo exerciseRepo;
+
+    @Autowired
+    BodyGroupService bodyGroupService;
+
+    @Value("${upperBodyParts}")
+    List<String> upperBodyParts;
 
 
     @PostConstruct
@@ -103,9 +114,34 @@ public class ExerciseService {
         }
     }
 
+//TODO Workin Progress
+    public List<Exercise> getByBodyPartUpper(List<String> bodyPart) {
+
+        for (String s : bodyPart) {
+
+            URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + s)
+                    .build()
+                    .toUri();
+
+            ResponseEntity<List<Exercise>> response =
+                    restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+                    });
+
+            if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+                return response.getBody();
+
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/target/" + target)
+
                 .build()
                 .toUri();
 
@@ -137,33 +173,24 @@ public class ExerciseService {
         }
     }
 
-    //TODO don't think this is correct
-    public List<Exercise> getUpperBodyExercises(List<String> upperBodyParts) {
-        List<Exercise> exercises = new ArrayList<>();
-        for (String bodyPart : upperBodyParts) {
-            ResponseEntity<List<Exercise>> response = restTemplate.exchange(
-                    "https://exercisedb.p.rapidapi.com/exercises/bodypart/" + bodyPart, HttpMethod.GET,
-                    null, new ParameterizedTypeReference<List<Exercise>>() {
-            });
-//if all good
-            exercises.addAll(response.getBody());
-        }
 
-        return exercises;
-    }
 
-    public List<Exercise> getTop10ExercisesByEquipment(String equipment) {
-        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
-                .build()
-                .toUri();
 
-        ResponseEntity<List<Exercise>> response =
-                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
-                });
-        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
-            return response.getBody();
-        } else {
-            return null;
-        }
-    }
+
+//    public List<Exercise> getTop10ExercisesByEquipment(String equipment) {
+//        URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
+//                .build()
+//                .toUri();
+//
+//
+//
+//        ResponseEntity<List<Exercise>> response =
+//                restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+//                });
+//        if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
+//            return response.getBody();
+//        } else {
+//            return null;
+//        }
+//    }
 }

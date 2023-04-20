@@ -3,15 +3,19 @@ package com.example.fitnessapplication.controllers;
 import com.example.fitnessapplication.models.Exercise;
 import com.example.fitnessapplication.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/exercises")
+@Component
 public class ExerciseController {
+
 
 
     @Autowired
@@ -40,6 +44,13 @@ public class ExerciseController {
         return exerciseService.getByBodyPart(bodyPart);
     }
 
+    @GetMapping("/upper")
+    public List<Exercise> getExerciseByBodyPartUpper(@RequestBody List<String> bodyPart) {
+
+        return exerciseService.getByBodyPartUpper(bodyPart);
+    }
+
+
 
     @GetMapping("/equipment/{equipment}")
     public List<Exercise> getExerciseByEquipment(@PathVariable String equipment) {
@@ -52,14 +63,15 @@ public class ExerciseController {
         return exerciseService.getByTargetMuscles(target);
     }
 
-    @ResponseBody
-    @GetMapping("/type/upperbody")
-    public List<Exercise> getUpperBodyExercises(List<String> upperBody) {
-        return exerciseService.getUpperBodyExercises(upperBody);
-    }
+//    @ResponseBody
+//    @GetMapping("/type/upperbody")
+//    public List<Exercise> getUpperBodyExercises(@RequestParam("upperBody") List<String> upperBody) {
+//        System.out.println("test");
+//        return exerciseService.getUpperBodyExercises(upperBody);
+//    }
 
-    @GetMapping("/top10/equipment/{equipment}")
-    public List<Exercise> getTop10Exercises(@PathVariable String equipment) {
-        return exerciseService.getTop10ExercisesByEquipment(equipment);
-    }
+//    @GetMapping("/top10/equipment/{equipment}")
+//    public List<Exercise> getTop10Exercises(@PathVariable String equipment) {
+//        return exerciseService.getTop10ExercisesByEquipment(equipment);
+//    }
 }
