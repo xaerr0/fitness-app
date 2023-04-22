@@ -27,6 +27,11 @@ public class Target {
 
     @Override
     public String toString() {
-        return target;
+        // API is lowercase - this capitalizes the first letter of every word
+        String[] words = target.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1);
+        }
+        return String.join(" ", words);
     }
 }
