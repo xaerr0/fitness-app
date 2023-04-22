@@ -21,20 +21,25 @@
     />
   </head>
   <body>
-    <form>
+    <form action th:action="@{/generated}" th:object="${exercise}" method="post" >
       <div class="row">
         <div class="col-lg-12 mb-8">
           <!-- <div class="card-body"> -->
           <img class="card-img-top" src="" alt="" />
 
           <div class="card-body1">
-            <h5 class="card-title">Create Your Workout</h5>
-            <p class="card-text">How many minutes</p>
-            <select class="form-select form-select-sm mt-3">
-              <option>30</option>
-              <option>45</option>
-              <option>60</option>
-            </select>
+
+<!--            amount of minutes for workout-->
+
+<!--            <h5 class="card-title">Create Your Workout</h5>-->
+<!--            <p class="card-text">How many minutes</p>-->
+<!--            <select class="form-select form-select-sm mt-3">-->
+<!--              <option>30</option>-->
+<!--              <option>45</option>-->
+<!--              <option>60</option>-->
+<!--            </select>-->
+
+<!--            Target Muscles-->
 
             <p class="card-text">Select Target Muscles</p>
             <select class="form-select form-select-sm mt-3" th:name="targetId">
@@ -42,18 +47,23 @@
               <option
                 th:each="target : ${targetList}"
                 th:value="${target.id}"
-                th:text="${target.toString}"
-              ></option>
+                th:text="${target.toString}">
+              </option>
             </select>
 
-            <p class="card-text">Select Workout Type</p>
+<!--            Workout Type-->
 
-            <select class="form-select form-select-sm mt-3">
-              <option>Full Body</option>
-              <option>Upper Body</option>
-              <option>Lower Body</option>
-              <option>Cardio</option>
-            </select>
+<!--            <p class="card-text">Select Workout Type</p>-->
+
+<!--            <select class="form-select form-select-sm mt-3">-->
+<!--              <option>Full Body</option>-->
+<!--              <option>Upper Body</option>-->
+<!--              <option>Lower Body</option>-->
+<!--              <option>Cardio</option>-->
+<!--            </select>-->
+
+
+<!--            Select Equipment-->
 
             <p class="card-text">Select Equipment</p>
             <label th:if="${equipmentList.isEmpty()}"> None Available </label>
@@ -69,33 +79,38 @@
 
             <p class="card-text">Select Available Equipment</p>
             <div class="form-check-inline">
-              <label class="form-check-label" for="check1">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="check1"
-                  name="vehicle1"
-                  value="something"
-                  checked
-                />Option 1
-              </label>
-            </div>
-            <div class="form-check-inline">
-              <label class="form-check-label" for="check2">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="check2"
-                  name="vehicle2"
-                  value="something"
-                />Option 2
-              </label>
-            </div>
 
-            <a href="#" class="btn btn-outline-primary btn-sm">
+<!--              Test buttons-->
+
+<!--              <label class="form-check-label" for="check1">-->
+<!--                <input-->
+<!--                  type="checkbox"-->
+<!--                  class="form-check-input"-->
+<!--                  id="check1"-->
+<!--                  name="vehicle1"-->
+<!--                  value="something"-->
+<!--                  checked-->
+<!--                />Option 1-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <div class="form-check-inline">-->
+<!--              <label class="form-check-label" for="check2">-->
+<!--                <input-->
+<!--                  type="checkbox"-->
+<!--                  class="form-check-input"-->
+<!--                  id="check2"-->
+<!--                  name="vehicle2"-->
+<!--                  value="something"-->
+<!--                />Option 2-->
+<!--              </label>-->
+<!--            </div>-->
+
+            <button name="submit" class="btn btn-primary btn-sm" type="submit">
               Generate Workout
-            </a>
+            </button>
           </div>
+
+
           <!-- </div> -->
         </div>
       </div>
