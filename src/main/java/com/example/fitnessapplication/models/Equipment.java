@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.util.StringUtils;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -19,7 +21,7 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @OneToOne
+    //    @OneToOne
     private String equipment;
 
     public Equipment(String equipment) {
@@ -28,6 +30,13 @@ public class Equipment {
 
     @Override
     public String toString() {
-        return equipment;
+        // API is lowercase - this capitalizes the first letter of every word
+        String[] words = equipment.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1);
+        }
+        return String.join(" ", words);
     }
+
+
 }
