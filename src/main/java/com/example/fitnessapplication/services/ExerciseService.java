@@ -114,7 +114,7 @@ public class ExerciseService {
         }
     }
 
-//TODO Workin Progress
+//TODO AINT WORKIN!
     public List<Exercise> getByBodyPartUpper(List<String> bodyPart) {
 
         for (String s : bodyPart) {
