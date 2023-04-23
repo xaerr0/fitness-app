@@ -67,8 +67,5 @@ public class ExerciseController {
         return exerciseService.getExercisesByMultipleBodyParts(upperbody);
     }
 
-//    @GetMapping("/top10/equipment/{equipment}")
-//    public List<Exercise> getTop10Exercises(@PathVariable String equipment) {
-//        return exerciseService.getTop10ExercisesByEquipment(equipment);
-//    }
+
 }

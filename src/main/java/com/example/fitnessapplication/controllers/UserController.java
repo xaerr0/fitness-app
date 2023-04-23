@@ -51,8 +51,9 @@ public class UserController {
     @ResponseBody
     @PostMapping("/generated")
     public String submitGenerator(@ModelAttribute("equipmentName") String equipmentName, Model model) {
-        model.addAttribute("equipmentName", equipmentName);
         List<Exercise> exercise = exerciseService.getByEquipment(equipmentName);
+        model.addAttribute("equipmentName", equipmentName);
+        model.addAttribute("exercise", exercise);
         return "generated";
 
     }
