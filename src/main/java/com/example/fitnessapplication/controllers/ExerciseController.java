@@ -3,19 +3,16 @@ package com.example.fitnessapplication.controllers;
 import com.example.fitnessapplication.models.Exercise;
 import com.example.fitnessapplication.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/exercises")
 @Component
 public class ExerciseController {
-
 
 
     @Autowired
@@ -27,21 +24,23 @@ public class ExerciseController {
         return exerciseService.getAllExercises();
     }
 
-    @GetMapping("/exercise/{id}")
-    public Exercise getExercise(@PathVariable Long id) {
+    // http://localhost:8080/exercises/exercise?id=7
+    @GetMapping(value = "/exercise", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Exercise getExercise(@RequestParam Long id) {
         return exerciseService.getExercise(id);
     }
 
 
-    @GetMapping("/name/{name}")
-    public List<Exercise> getExercisesByName(@PathVariable String name) {
+    //http://localhost:8080/exercises/name?name=back
+    @GetMapping(value = "/name", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExercisesByName(@RequestParam String name) {
         return exerciseService.getExerciseByName(name);
     }
 
-
-    @GetMapping("/bodypart/{bodyPart}")
-    public List<Exercise> getExerciseByBodyPart(@PathVariable String bodyPart) {
-        return exerciseService.getByBodyPart(bodyPart);
+    //http://localhost:8080/exercises/bodypart?bodypart=chest
+    @GetMapping(value = "/bodypart", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExerciseByBodyPart(@RequestParam String bodypart) {
+        return exerciseService.getByBodyPart(bodypart);
     }
 
     @GetMapping("/upper")
@@ -50,25 +49,23 @@ public class ExerciseController {
         return exerciseService.getByBodyPartUpper(bodyPart);
     }
 
-
-
-    @GetMapping("/equipment/{equipment}")
-    public List<Exercise> getExerciseByEquipment(@PathVariable String equipment) {
+    //http://localhost:8080/exercises/equipment?equipment=barbell
+    @GetMapping(value = "/equipment", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExerciseByEquipment(@RequestParam String equipment) {
         return exerciseService.getByEquipment(equipment);
     }
 
-
-    @GetMapping("/target/{target}")
-    public List<Exercise> getExerciseByTarget(@PathVariable String target) {
+    //http://localhost:8080/exercises/target?target=calves
+    @GetMapping(value = "/target", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExerciseByTarget(@RequestParam String target) {
         return exerciseService.getByTargetMuscles(target);
     }
 
-//    @ResponseBody
-//    @GetMapping("/type/upperbody")
-//    public List<Exercise> getUpperBodyExercises(@RequestParam("upperBody") List<String> upperBody) {
-//        System.out.println("test");
-//        return exerciseService.getUpperBodyExercises(upperBody);
-//    }
+    //http://localhost:8080/exercises/type?upperbody=chest,back,waist
+    @GetMapping(value = "/type", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExerciseByMultipleBodyParts(@RequestParam("upperbody") List<String> upperbody) {
+        return exerciseService.getExercisesByMultipleBodyParts(upperbody);
+    }
 
 //    @GetMapping("/top10/equipment/{equipment}")
 //    public List<Exercise> getTop10Exercises(@PathVariable String equipment) {
