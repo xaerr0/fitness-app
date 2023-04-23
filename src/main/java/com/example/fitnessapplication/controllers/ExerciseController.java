@@ -43,7 +43,7 @@ public class ExerciseController {
         return exerciseService.getByBodyPart(bodypart);
     }
 
-    // GET Multiple BodyParts
+    // GET Exercises By Multiple BodyParts
     //http://localhost:8080/exercises/type?upperbody=chest,back,waist
     @GetMapping(value = "/bodyparts", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercise> getExerciseByMultipleBodyParts(@RequestParam("bodyparts") List<String> upperbody) {
@@ -56,6 +56,8 @@ public class ExerciseController {
         return exerciseService.getByEquipment(equipment);
     }
 
+    // GET Exercises by Multiple Equipment
+    //http://localhost:8080/exercises/equipmentlist?equipmentlist=cable,barbell
     @GetMapping(value = "/equipmentlist", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercise> getExercisesByMultipleEquipment(@RequestParam("equipmentlist") List<String> equipmentList) {
         return exerciseService.getByMultipleEquipment(equipmentList);
