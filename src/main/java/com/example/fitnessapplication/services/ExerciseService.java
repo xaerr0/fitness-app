@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Component
@@ -27,7 +28,7 @@ public class ExerciseService {
     RestTemplate restTemplate;
     @Autowired
     ExerciseRepo exerciseRepo;
-//    @Autowired
+    //    @Autowired
 //    BodyGroupService bodyGroupService;
     @Value("${upperBodyParts}")
     List<String> upperBodyParts;
@@ -108,28 +109,20 @@ public class ExerciseService {
         }
     }
 
-    //TODO AINT WORKIN!
-    public List<Exercise> getByBodyPartUpper(List<String> bodyPart) {
-
-        for (String s : bodyPart) {
-
-            URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + s)
-                    .build()
-                    .toUri();
-
-            ResponseEntity<List<Exercise>> response =
-                    restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Exercise>>() {
+    //Exercises by Multiple Bodyparts
+    //TODO What's best naming practice between service and controller?
+    public List<Exercise> getExercisesByMultipleBodyParts(List<String> bodyParts) {
+        List<Exercise> exercises = new ArrayList<>();
+        for (String bodyPart : bodyParts) {
+            ResponseEntity<List<Exercise>> response = restTemplate.exchange(
+                    "https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + bodyPart, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Exercise>>() {
                     });
-
-            if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
-                return response.getBody();
-
-            } else {
-                return null;
-            }
+            exercises.addAll(Objects.requireNonNull(response.getBody()));
         }
-        return null;
+        return exercises;
     }
+
 
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
@@ -166,22 +159,16 @@ public class ExerciseService {
         }
     }
 
-
-    //TODO What's best naming practice between service and controller?
-    public List<Exercise> getExercisesByMultipleBodyParts(List<String> upperBodyParts) {
+    public List<Exercise> getByMultipleEquipment(List<String> equipmentList) {
         List<Exercise> exercises = new ArrayList<>();
-        for (String bodyPart : upperBodyParts) {
+        for (String equipment : equipmentList) {
             ResponseEntity<List<Exercise>> response = restTemplate.exchange(
-                    "https://exercisedb.p.rapidapi.com/exercises/bodyPart/" + bodyPart, HttpMethod.GET,
+                    "https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment, HttpMethod.GET,
                     null, new ParameterizedTypeReference<List<Exercise>>() {
                     });
-//if all good
-            exercises.addAll(response.getBody());
+            exercises.addAll(Objects.requireNonNull(response.getBody()));
         }
-
         return exercises;
     }
-
-
 
 }

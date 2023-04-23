@@ -43,10 +43,11 @@ public class ExerciseController {
         return exerciseService.getByBodyPart(bodypart);
     }
 
-    @GetMapping("/upper")
-    public List<Exercise> getExerciseByBodyPartUpper(@RequestBody List<String> bodyPart) {
-
-        return exerciseService.getByBodyPartUpper(bodyPart);
+    // GET Multiple BodyParts
+    //http://localhost:8080/exercises/type?upperbody=chest,back,waist
+    @GetMapping(value = "/bodyparts", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExerciseByMultipleBodyParts(@RequestParam("bodyparts") List<String> upperbody) {
+        return exerciseService.getExercisesByMultipleBodyParts(upperbody);
     }
 
     //http://localhost:8080/exercises/equipment?equipment=barbell
@@ -55,17 +56,19 @@ public class ExerciseController {
         return exerciseService.getByEquipment(equipment);
     }
 
+    @GetMapping(value = "/equipmentlist", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExercisesByMultipleEquipment(@RequestParam("equipmentlist") List<String> equipmentList) {
+        return exerciseService.getByMultipleEquipment(equipmentList);
+
+    }
+
     //http://localhost:8080/exercises/target?target=calves
     @GetMapping(value = "/target", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercise> getExerciseByTarget(@RequestParam String target) {
         return exerciseService.getByTargetMuscles(target);
     }
 
-    //http://localhost:8080/exercises/type?upperbody=chest,back,waist
-    @GetMapping(value = "/type", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Exercise> getExerciseByMultipleBodyParts(@RequestParam("upperbody") List<String> upperbody) {
-        return exerciseService.getExercisesByMultipleBodyParts(upperbody);
-    }
+
 
 
 }
