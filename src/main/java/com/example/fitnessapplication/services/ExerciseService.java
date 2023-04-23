@@ -16,9 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Component
@@ -27,16 +25,12 @@ public class ExerciseService {
 
     @Autowired
     RestTemplate restTemplate;
-
     @Autowired
     ExerciseRepo exerciseRepo;
-
     @Autowired
     BodyGroupService bodyGroupService;
-
     @Value("${upperBodyParts}")
     List<String> upperBodyParts;
-
 
     @PostConstruct
     public void pullAndPersistExercises() {
@@ -114,7 +108,7 @@ public class ExerciseService {
         }
     }
 
-//TODO AINT WORKIN!
+    //TODO AINT WORKIN!
     public List<Exercise> getByBodyPartUpper(List<String> bodyPart) {
 
         for (String s : bodyPart) {
@@ -136,7 +130,6 @@ public class ExerciseService {
         }
         return null;
     }
-
 
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
@@ -172,7 +165,6 @@ public class ExerciseService {
             return null;
         }
     }
-
 
 
 
