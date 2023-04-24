@@ -61,16 +61,19 @@ public class ExerciseController {
     @GetMapping(value = "/equipmentlist", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercise> getExercisesByMultipleEquipment(@RequestParam("equipmentlist") List<String> equipmentList) {
         return exerciseService.getByMultipleEquipment(equipmentList);
-
     }
 
+    //TODO Add multiple call
     //http://localhost:8080/exercises/target?target=calves
     @GetMapping(value = "/target", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercise> getExerciseByTarget(@RequestParam String target) {
         return exerciseService.getByTargetMuscles(target);
     }
 
-
-
-
+    // GET Exercises by Multiple Targets
+    //http://localhost:8080/exercises/targetlist?targetlist=calves,biceps
+    @GetMapping(value = "/targetlist", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Exercise> getExercisesByMultipleTargets(@RequestParam("targetlist") List<String> targetList) {
+        return exerciseService.getByMultipleTargets(targetList);
+    }
 }

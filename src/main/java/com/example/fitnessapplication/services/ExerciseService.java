@@ -142,6 +142,21 @@ public class ExerciseService {
         }
     }
 
+
+    public List<Exercise> getByMultipleTargets(List<String> targetList) {
+        List<Exercise> exercises = new ArrayList<>();
+        for (String target : targetList) {
+            ResponseEntity<List<Exercise>> response = restTemplate.exchange(
+                    "https://exercisedb.p.rapidapi.com/exercises/target/" + target, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Exercise>>() {
+                    });
+            exercises.addAll(Objects.requireNonNull(response.getBody()));
+        }
+        return exercises;
+    }
+
+
+
     //Exercise By Equipment
     public List<Exercise> getByEquipment(String equipment) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
@@ -170,5 +185,4 @@ public class ExerciseService {
         }
         return exercises;
     }
-
 }
