@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @Service
 
@@ -36,10 +37,11 @@ public class BodyGroupService {
         return null;
     }
 
+    //TODO Build out the rest of the map
+    public Map<String, List<String>> getGroupMap() {
 
-    //
-
-
-
+        return Map.of("Upper Body", List.of("chest", "back", "shoulders", "neck", "upper arms", "lower arms"),
+                "Lower Body", List.of("lower legs", "upper legs", "waist"));
+    }
 
 }
