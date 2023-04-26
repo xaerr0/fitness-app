@@ -41,26 +41,25 @@
 
 <!--            Target Muscles-->
 
-            <p class="card-text">Select Target Muscles</p>
-            <select class="form-select form-select-sm mt-3" th:name="targetId">
-              <option th:if="${targetList.isEmpty}">None Available</option>
-              <option
-                th:each="target : ${targetList}"
-                th:value="${target.id}"
-                th:text="${target.toString}">
-              </option>
-            </select>
+<!--            <p class="card-text">Select Target Muscles</p>-->
+<!--            <select class="form-select form-select-sm mt-3" th:name="targetId">-->
+<!--              <option th:if="${targetList.isEmpty}">None Available</option>-->
+<!--              <option-->
+<!--                th:each="target : ${targetList}"-->
+<!--                th:value="${target.id}"-->
+<!--                th:text="${target.toString}">-->
+<!--              </option>-->
+<!--            </select>-->
 
 <!--            Workout Type-->
 
-<!--            <p class="card-text">Select Workout Type</p>-->
+            <p class="card-text">Select Workout Type</p>
 
-<!--            <select class="form-select form-select-sm mt-3">-->
-<!--              <option>Full Body</option>-->
-<!--              <option>Upper Body</option>-->
-<!--              <option>Lower Body</option>-->
-<!--              <option>Cardio</option>-->
-<!--            </select>-->
+            <select class="form-select form-select-sm mt-3">
+              <option th:each="${group : bodyGroupMap}" th:value="${group.values}" th:text="${group.key}">
+
+              </option>
+            </select>
 
 
 <!--            Select Equipment-->
