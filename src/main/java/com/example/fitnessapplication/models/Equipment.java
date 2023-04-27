@@ -37,6 +37,4 @@ public class Equipment {
         }
         return String.join(" ", words);
     }
-
-
 }
