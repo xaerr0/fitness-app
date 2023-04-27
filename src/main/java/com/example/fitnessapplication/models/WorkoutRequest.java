@@ -12,6 +12,6 @@ import java.util.List;
 public class WorkoutRequest {
 
     List<Equipment> equipment;
-    List<BodyPart>  bodyParts;
+    List<BodyPart> bodyParts;
 
 }

@@ -55,6 +55,5 @@ public class UserController {
         model.addAttribute("equipmentName", equipmentName);
         model.addAttribute("exercise", exercise);
         return "generated";
-
     }
 }
