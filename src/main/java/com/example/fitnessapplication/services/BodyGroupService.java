@@ -23,13 +23,6 @@ public class BodyGroupService {
     ExerciseService exerciseService;
 
 
-    public List<String> getGroup(String group) {
-        if (group.equalsIgnoreCase("upperBody")) {
-            return List.of("chest", "back", "shoulders", "neck", "upper arms", "lower arms");
-        }
-        return null;
-    }
-
     //TODO Build out the rest of the map
     public Map<String, List<String>> getGroupMap() {
 
