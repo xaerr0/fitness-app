@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,16 +19,16 @@ public class Target {
     private Long id;
 
 //    @OneToOne
-    private String target;
+    private String name;
 
     public Target(String target) {
-        this.target = target;
+        this.name = target;
     }
 
     @Override
     public String toString() {
         // API is lowercase - this capitalizes the first letter of every word
-        String[] words = target.split(" ");
+        String[] words = name.split(" ");
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1);
         }

@@ -5,9 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,15 +22,33 @@ public class BodyPart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @OneToOne
-    private String bodyPart;
+    //    @OneToOne
+    private String name;
 
-    public BodyPart(String bodyPart) {
-        this.bodyPart = bodyPart;
-    }
+    private List<BodyGroup> groups;
 
-    @Override
-    public String toString() {
-        return bodyPart;
+    public BodyPart(String name) {
+        this.name = name;
+        groups = new ArrayList<>();
+        BodyGroup upperBody = new BodyGroup("Upper Body");
+        BodyGroup lowerBody = new BodyGroup("Lower Body");
+        BodyGroup fullBody = new BodyGroup("Full Body");
+
+
+        if (name.equals("chest") || name.equals("back") || name.equals("shoulders") ||
+            name.equals("neck") || name.equals("upper arms") || name.equals("lower arms")) {
+            groups.add(upperBody);
+            groups.add(fullBody);
+        }
+        if (name.equals("lower legs") || name.equals("upper legs")) {
+            groups.add(lowerBody);
+            groups.add(fullBody);
+        }
+        if (name.equals("cardio")) {
+            groups.add(new BodyGroup("Cardio"));
+        }
+        if (name.equals("waist")) {
+            groups.add(new BodyGroup("Abs"));
+        }
     }
 }
