@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,16 +21,16 @@ public class Equipment {
     private Long id;
 
     //    @OneToOne
-    private String equipment;
+    private String name;
 
-    public Equipment(String equipment) {
-        this.equipment = equipment;
+    public Equipment(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         // API is lowercase - this capitalizes the first letter of every word
-        String[] words = equipment.split(" ");
+        String[] words = name.split(" ");
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1);
         }
