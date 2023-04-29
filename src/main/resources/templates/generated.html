@@ -6,12 +6,19 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
-    <th:block th:each="exercise : ${exerciseList}">
-        <li th:text="${exercise}"></li>
 
-    </th:block>
+</thead>
+<tbody>
+<tr th:each="exercise : ${exerciseRequest}">
+    <td th:text="${exercise.id}"></td>
+    <td th:text="${exercise.bodyPart}"></td>
+    <td th:text="${exercise.equipment}"></td>
+    <td th:text="${exercise.name}"></td>
+    <td th:text="${exercise.target}"></td>
+    <td th:text="${exercise.exerciseGif}"></td>
 
-</ul>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
