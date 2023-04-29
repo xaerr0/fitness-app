@@ -36,8 +36,8 @@ public class ExerciseService {
 //    ExerciseRepo exerciseRepo;
     //    @Autowired
 //    BodyGroupService bodyGroupService;
-    @Value("${upperBodyParts}")
-    List<String> upperBodyParts;
+//    @Value("${upperBodyParts}")
+//    List<String> upperBodyParts;
 
 //    @PostConstruct
 //    public void pullAndPersistExercises() {
@@ -194,15 +194,19 @@ public class ExerciseService {
 
     public List<Exercise> getExercises(WorkoutRequest workoutRequest) {
         List<BodyPart> bodyParts = bodyPartService.getAllBodyParts();
-        bodyParts.stream()
+        List<Exercise> exerciseList = null;
+        List<BodyPart> filteredBodyParts = bodyParts.stream()
                 .filter(b -> b.getGroups().stream()
                         .anyMatch(group -> group.getName().equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
                 .collect(Collectors.toList());
-
         if (workoutRequest.getBodyGroup().getName().equalsIgnoreCase("Lower Body")){
 
+            List<String> filteredBodyPart = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
+             exerciseList = getExercisesByMultipleBodyParts(filteredBodyPart);
 
         }
+
+        return exerciseList;
     }
 
 }
