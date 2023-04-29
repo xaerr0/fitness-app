@@ -21,7 +21,7 @@
     />
 </head>
 <body>
-<form action th:action="@{/generated}" th:object="${exercise}" method="post">
+<form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
     <div class="row">
         <div class="col-lg-12 mb-8">
             <!-- <div class="card-body"> -->
@@ -41,25 +41,27 @@
 
                 <!--            Target Muscles-->
 
-                <p class="card-text">Select Target Muscles</p>
-                <select class="form-select form-select-sm mt-3" th:name="targetId">
-                    <option th:if="${targetList.isEmpty}">None Available</option>
-                    <option
-                            th:each="target : ${targetList}"
-                            th:value="${target.id}"
-                            th:text="${target.toString}">
-                    </option>
-                </select>
+<!--                IMPLEMENT LATER-->
+
+<!--                <p class="card-text">Select Target Muscles</p>-->
+<!--                <select class="form-select form-select-sm mt-3" th:name="targetId">-->
+<!--                    <option th:if="${targetList.isEmpty}">None Available</option>-->
+<!--                    <option-->
+<!--                            th:each="target : ${targetList}"-->
+<!--                            th:value="${target.id}"-->
+<!--                            th:text="${target.toString}">-->
+<!--                    </option>-->
+<!--                </select>-->
 
                 <!--            Workout Type-->
 
                 <p class="card-text">Select Workout Type</p>
 
-                <select class="form-select form-select-sm mt-3">
+                <select class="form-select form-select-sm mt-3" th:field="*{bodyGroup}">
                     <option
-                            th:each="group : ${getGroupMap}"
-                            th:value="${group.value}"
-                            th:text="${group.key}">
+                            th:each="group : ${bodyGroupList}"
+                            th:value="${group.name}"
+                            th:text="${group.name}">
                     </option>
                 </select>
 
@@ -73,7 +75,8 @@
                             type="checkbox"
                             class="form-check-input"
                             name="equipment"
-                            th:value="${equipment.id}"
+                            th:field="*{equipment}"
+                            th:value="${equipment.name}"
                     />
                     <label th:text="${equipment.toString()}"></label>
                 </th:block>
