@@ -1,7 +1,8 @@
 package com.example.fitnessapplication.services;
 
+import com.example.fitnessapplication.models.BodyPart;
 import com.example.fitnessapplication.models.Exercise;
-import com.example.fitnessapplication.repos.ExerciseRepo;
+import com.example.fitnessapplication.models.WorkoutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,11 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Component
@@ -26,26 +27,31 @@ public class ExerciseService {
 
     @Autowired
     RestTemplate restTemplate;
+
     @Autowired
-    ExerciseRepo exerciseRepo;
+    BodyPartService bodyPartService;
+
+
+    //    @Autowired
+//    ExerciseRepo exerciseRepo;
     //    @Autowired
 //    BodyGroupService bodyGroupService;
     @Value("${upperBodyParts}")
     List<String> upperBodyParts;
 
-    @PostConstruct
-    public void pullAndPersistExercises() {
-        if (exerciseRepo.findAll().size() == 0) {
-            List<Exercise> exerciseList = getAllExercises();
-            saveAllExercises(exerciseList);
-        }
-    }
-
-    private void saveAllExercises(List<Exercise> exerciseList) {
-        for (Exercise exercise : exerciseList) {
-            exerciseRepo.save(exercise);
-        }
-    }
+//    @PostConstruct
+//    public void pullAndPersistExercises() {
+//        if (exerciseRepo.findAll().size() == 0) {
+//            List<Exercise> exerciseList = getAllExercises();
+//            saveAllExercises(exerciseList);
+//        }
+//    }
+//
+//    private void saveAllExercises(List<Exercise> exerciseList) {
+//        for (Exercise exercise : exerciseList) {
+//            exerciseRepo.save(exercise);
+//        }
+//    }
 
     public List<Exercise> getAllExercises() {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises")
@@ -156,7 +162,6 @@ public class ExerciseService {
     }
 
 
-
     //Exercise By Equipment
     public List<Exercise> getByEquipment(String equipment) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/equipment/" + equipment)
@@ -185,4 +190,19 @@ public class ExerciseService {
         }
         return exercises;
     }
+
+
+    public List<Exercise> getExercises(WorkoutRequest workoutRequest) {
+        List<BodyPart> bodyParts = bodyPartService.getAllBodyParts();
+        bodyParts.stream()
+                .filter(b -> b.getGroups().stream()
+                        .anyMatch(group -> group.getName().equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
+                .collect(Collectors.toList());
+
+        if (workoutRequest.getBodyGroup().getName().equalsIgnoreCase("Lower Body")){
+
+
+        }
+    }
+
 }

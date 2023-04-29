@@ -1,7 +1,6 @@
 package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.models.BodyPart;
-import com.example.fitnessapplication.repos.BodyPartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -21,22 +20,22 @@ public class BodyPartService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    BodyPartRepo bodypartRepo;
+//    @Autowired
+//    BodyPartRepo bodypartRepo;
 
-    @PostConstruct
-    public void pullAndPersistBodyParts() {
-        if (bodypartRepo.findAll().size() == 0) {
-            List<BodyPart> bodyPartList = getAllBodyParts();
-            saveAllBodyParts(bodyPartList);
-        }
-    }
+//    public void pullAndPersistBodyParts() {
+//        if (bodypartRepo.findAll().size() == 0) {
+//            List<BodyPart> bodyPartList = getAllBodyParts();
+//            saveAllBodyParts(bodyPartList);
+//        }
+//    }
+//
+//    private void saveAllBodyParts(List<BodyPart> bodyPartList) {
+//        for (BodyPart bodypart : bodyPartList) {
+//            bodypartRepo.save(bodypart);
+//        }
+//    }
 
-    private void saveAllBodyParts(List<BodyPart> bodyPartList) {
-        for (BodyPart bodypart : bodyPartList) {
-            bodypartRepo.save(bodypart);
-        }
-    }
 
     public List<BodyPart> getAllBodyParts() {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/bodyPartList")

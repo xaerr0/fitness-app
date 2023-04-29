@@ -1,15 +1,15 @@
 package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.models.Target;
-import com.example.fitnessapplication.repos.TargetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.List;
 
@@ -19,22 +19,22 @@ public class TargetService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    TargetRepo targetRepo;
+//    @Autowired
+//    TargetRepo targetRepo;
 
-    @PostConstruct
-    public void pullAndPersistTargetMuscles() {
-        if (targetRepo.findAll().size() == 0) {
-            List<Target> targetList = getAllTargetMuscles();
-            saveAllTargets(targetList);
-        }
-    }
-
-    private void saveAllTargets(List<Target> targetList) {
-        for (Target target : targetList) {
-            targetRepo.save(target);
-        }
-    }
+//    @PostConstruct
+//    public void pullAndPersistTargetMuscles() {
+//        if (targetRepo.findAll().size() == 0) {
+//            List<Target> targetList = getAllTargetMuscles();
+//            saveAllTargets(targetList);
+//        }
+//    }
+//
+//    private void saveAllTargets(List<Target> targetList) {
+//        for (Target target : targetList) {
+//            targetRepo.save(target);
+//        }
+//    }
 
     //    List All Target Muscles
     public List<Target> getAllTargetMuscles() {
