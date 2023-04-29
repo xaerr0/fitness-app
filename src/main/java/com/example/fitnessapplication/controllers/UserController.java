@@ -43,17 +43,21 @@ public class UserController {
         model.addAttribute("bodyPartList", bodyPartList);
         List<Target> targetList = targetService.getAllTargetMuscles();
         model.addAttribute("targetList", targetList);
-        Map<String, List<String>> bodyGroupMap = bodyGroupService.getGroupMap();
-        model.addAttribute("getGroupMap", bodyGroupMap);
+        List<BodyGroup> bodyGroupList = bodyGroupService.getAllBodyGroups();
+        model.addAttribute("bodyGroupList", bodyGroupList);
+        WorkoutRequest workoutRequest = new WorkoutRequest();
+        model.addAttribute("workoutRequest", workoutRequest);
         return "generator";
     }
 
     @ResponseBody
     @PostMapping("/generated")
-    public String submitGenerator(@ModelAttribute("equipmentName") String equipmentName, Model model) {
-        List<Exercise> exercise = exerciseService.getByEquipment(equipmentName);
-        model.addAttribute("equipmentName", equipmentName);
-        model.addAttribute("exercise", exercise);
+    public String submitGenerator(@ModelAttribute("workoutRequest") WorkoutRequest workoutRequest, Model model) {
+//        List<Exercise> exercise = exerciseService.getByMultipleEquipment(equipmentList);
+//        model.addAttribute("equipmentName", equipmentList);
+//        model.addAttribute("exercise", exercise);
+        List<Exercise> exerciseRequest = exerciseService.getExercises(workoutRequest);
+        model.addAttribute("exerciseRequest", exerciseRequest);
         return "generated";
     }
 }
