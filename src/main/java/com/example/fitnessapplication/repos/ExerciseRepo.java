@@ -6,11 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
-    List<Exercise> findAll();
+//@Repository
+//public interface ExerciseRepo extends JpaRepository<Exercise, Long> {
+//    List<Exercise> findAll();
 //    List<Exercise> getUpperBodyExercises();
 //    List<Exercise> findTop10ExercisesByEquipment(String equipment);
 
 
-}
+//}
