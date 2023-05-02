@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.controllers;
+package com.example.fitnessapplication.models;
 
 import lombok.*;
 

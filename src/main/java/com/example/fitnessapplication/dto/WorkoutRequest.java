@@ -1,6 +1,7 @@
-package com.example.fitnessapplication.models;
+package com.example.fitnessapplication.dto;
 
 
+import com.example.fitnessapplication.models.BodyGroup;
 import lombok.Getter;
 import lombok.Setter;
 

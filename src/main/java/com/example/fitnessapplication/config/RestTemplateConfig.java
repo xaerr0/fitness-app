@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.services;
+package com.example.fitnessapplication.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
