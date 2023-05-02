@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.controllers;
 
+import com.example.fitnessapplication.dto.WorkoutRequest;
 import com.example.fitnessapplication.models.*;
 import com.example.fitnessapplication.services.*;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +50,6 @@ public class UserController {
         return "generator";
     }
 
-    @ResponseBody
     @PostMapping("/generated")
     public String submitGenerator(@ModelAttribute("workoutRequest") WorkoutRequest workoutRequest, Model model) {
 //        List<Exercise> exercise = exerciseService.getByMultipleEquipment(equipmentList);

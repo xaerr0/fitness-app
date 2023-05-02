@@ -2,9 +2,8 @@ package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.models.BodyPart;
 import com.example.fitnessapplication.models.Exercise;
-import com.example.fitnessapplication.models.WorkoutRequest;
+import com.example.fitnessapplication.dto.WorkoutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -191,7 +190,7 @@ public class ExerciseService {
         return exercises;
     }
 
-
+    //Filter by bodyGroups (upper body, lower body, cardio, abs)
     public List<Exercise> getExercises(WorkoutRequest workoutRequest) {
         List<BodyPart> bodyParts = bodyPartService.getAllBodyParts();
         List<Exercise> exerciseList = null;
@@ -199,14 +198,14 @@ public class ExerciseService {
                 .filter(b -> b.getGroups().stream()
                         .anyMatch(group -> group.getName().equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
                 .collect(Collectors.toList());
-        if (workoutRequest.getBodyGroup().getName().equalsIgnoreCase("Lower Body")){
 
-            List<String> filteredBodyPart = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
-             exerciseList = getExercisesByMultipleBodyParts(filteredBodyPart);
+            List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
+             exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
+        //TODO filter exerciseList by equipment in workoutRequest
 
-        }
 
         return exerciseList;
     }
 
-}
+    //randomly pull from each body part twice
+ }
