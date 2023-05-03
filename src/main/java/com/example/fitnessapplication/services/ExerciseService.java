@@ -1,8 +1,9 @@
 package com.example.fitnessapplication.services;
 
-import com.example.fitnessapplication.models.BodyPart;
-import com.example.fitnessapplication.models.Exercise;
 import com.example.fitnessapplication.dto.WorkoutRequest;
+import com.example.fitnessapplication.models.BodyPart;
+import com.example.fitnessapplication.models.Equipment;
+import com.example.fitnessapplication.models.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,9 @@ public class ExerciseService {
 
     @Autowired
     BodyPartService bodyPartService;
+
+    @Autowired
+    EquipmentService equipmentService;
 
 
     //    @Autowired
@@ -199,13 +203,17 @@ public class ExerciseService {
                         .anyMatch(group -> group.getName().equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
                 .collect(Collectors.toList());
 
-            List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
-             exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
+        List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
+        exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
         //TODO filter exerciseList by equipment in workoutRequest
 
 
-        return exerciseList;
+                List<Exercise> filteredEquipments = exerciseList.stream()
+                        .filter(e -> e.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment().getName())).collect(Collectors.toList());
+
+
+        return filteredEquipments;
     }
 
     //randomly pull from each body part twice
- }
+}
