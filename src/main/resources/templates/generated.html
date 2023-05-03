@@ -2,50 +2,93 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/generator.css}" href="/css/generated.css"
+          rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/generated.css"/>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous"
+    />
 </head>
 <body>
-<!--<thead>-->
 
-<!--</thead>-->
-<!--<tbody>-->
-<!--<tr th:each="exercise : ${exerciseRequest}">-->
-<!--    <td th:text="${exercise.id}"></td>-->
-<!--    <td th:text="${exercise.bodyPart}"></td>-->
-<!--    <td th:text="${exercise.equipment}"></td>-->
-<!--    <td th:text="${exercise.name}"></td>-->
-<!--    <td th:text="${exercise.target}"></td>-->
-<!--    <td th:text="${exercise.exerciseGif}"></td>-->
+<!--MODEL TO FINAL LOOK START-->
+<div class="col-lg-4 mb-2">
 
-<!--</tr>-->
-<!--</tbody>-->
+    <div class="article-card" th:each="exercise,iter : ${exerciseRequest}">
+        <div class="content">
+<!--            <td th:text="${exercise.id}"></td>-->
+<!--            <td th:text="${exercise.bodyPart}"></td>-->
+            <p class="exercise-num">Exercise <span th:text="${iter.count}"></span>
+            </p>
+            <p class="exercise-name" td th:text="${exercise.name}"></p>
+<!--            <td th:text="${exercise.target}"></td>-->
+            <img class="animGif" th:src="${exercise.exerciseGif}">
+
+
+        </div>
+    </div>
+</div>
+
+<!--MODEL TO FINAL LOOK END-->
+
+
+
+<!--TABLE VERSION FOR TESTING START-->
+<!--<table class="table">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th scope="col">Id</th>-->
+<!--        <th scope="col">Body Part</th>-->
+<!--        <th scope="col">Equipment</th>-->
+<!--        <th scope="col">Name</th>-->
+<!--        <th scope="col">Target</th>-->
+<!--        <th scope="col">Animation</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <div class="col-lg-4 mb-2">-->
+
+<!--        <div class="article-card" th:each="exercise : ${exerciseRequest}">-->
+
+<!--                <div class="content">-->
+<!--&lt;!&ndash;                    <td th:text="${exercise.id}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td th:text="${exercise.bodyPart}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td th:text="${exercise.equipment}"></td>&ndash;&gt;-->
+<!--                    <p class="exercise-name" td th:text="${exercise.name}"></p>-->
+<!--&lt;!&ndash;                    <td th:text="${exercise.target}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td th:text="${exercise.exerciseGif}"></td>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--    </tr>-->
+
+<!--    </tbody>-->
 <!--</table>-->
 
+<!--TABLE VERSION FOR TESTING END -->
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Body Part</th>
-        <th scope="col">Equipment</th>
-        <th scope="col">Name</th>
-        <th scope="col">Target</th>
-        <th scope="col">Animation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="exercise : ${exerciseRequest}">
-        <td th:text="${exercise.id}"></td>
-        <td th:text="${exercise.bodyPart}"></td>
-        <td th:text="${exercise.equipment}"></td>
-        <td th:text="${exercise.name}"></td>
-        <td th:text="${exercise.target}"></td>
-        <td th:text="${exercise.exerciseGif}"></td>
-    </tr>
 
-    </tbody>
-</table>
+<!--<div class="col-lg-4 mb-2">-->
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>-->
+
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <p class="exercise-num">Exercise 1</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Kettlebell One Arm Row</p>-->
+<!--        </div>-->
+<!--    </div>-->
 
 </body>
 </html>
