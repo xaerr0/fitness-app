@@ -204,15 +204,32 @@ public class ExerciseService {
                 .collect(Collectors.toList());
 
         List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
+
+
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
+
+        // Limit results to 5 for testing purposes
+        List<Exercise> limitedExerciseListForTest = exerciseList.stream().limit(5).collect(Collectors.toList());
         //TODO filter exerciseList by equipment in workoutRequest
 
+        List<Equipment> equipmentList = equipmentService.getAllEquipment();
 
-                List<Exercise> filteredEquipments = exerciseList.stream()
-                        .filter(e -> e.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment().getName())).collect(Collectors.toList());
+        List<Equipment> filteredEquipment = equipmentList.stream()
+                .filter(e -> e.getName().contains(workoutRequest.getBodyGroup().getName())).collect(Collectors.toList());
 
 
-        return filteredEquipments;
+//        for (Exercise exercise : exerciseList) {
+//            exercise.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment());
+
+//        }
+//        List<String> filteredEquipments = exerciseList.stream()
+//                .filter(e -> e.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment()
+//                                .stream().map(Equipment::getName).toString()collect(Collectors.toList());
+//
+//        List<String> equipmentStrings = filteredEquipments.stream().map(Equipment::getName).collect(Collectors.toList());
+//        exerciseList = getByMultipleEquipment(equipmentStrings);
+
+        return limitedExerciseListForTest;
     }
 
     //randomly pull from each body part twice
