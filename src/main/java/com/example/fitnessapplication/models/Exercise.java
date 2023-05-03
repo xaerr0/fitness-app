@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 //@Entity
@@ -18,19 +20,28 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @OneToOne
+    //    @OneToOne
     private String bodyPart;
 
-//    @OneToOne
+    //    @OneToOne
     private String equipment;
 
-//    @OneToOne
+    //    @OneToOne
     private String name;
 
-//    @OneToOne
+    //    @OneToOne
     private String target;
 
     @JsonProperty("gifUrl")
 //    @OneToOne
     private String exerciseGif;
+
+    public String getName() {
+        //Capitalize every word
+        String[] words = name.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
+        }
+        return String.join(" ", words);
+    }
 }
