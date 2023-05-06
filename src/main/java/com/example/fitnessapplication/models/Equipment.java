@@ -23,8 +23,14 @@ public class Equipment {
     //    @OneToOne
     private String name;
 
+
+
     public Equipment(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
