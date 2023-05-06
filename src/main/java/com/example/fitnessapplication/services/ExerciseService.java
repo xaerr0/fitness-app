@@ -16,13 +16,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Service
-@Component
 
+
+@Service
 public class ExerciseService {
 
     @Autowired
@@ -209,7 +210,7 @@ public class ExerciseService {
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
 
         // Limit results to 5 for testing purposes
-        List<Exercise> limitedExerciseListForTest = exerciseList.stream().limit(5).collect(Collectors.toList());
+//        List<Exercise> limitedExerciseListForTest = exerciseList.stream().limit(5).collect(Collectors.toList());
         //TODO filter exerciseList by equipment in workoutRequest
 
         List<Equipment> equipmentList = equipmentService.getAllEquipment();
@@ -217,19 +218,30 @@ public class ExerciseService {
         List<Equipment> filteredEquipment = equipmentList.stream()
                 .filter(e -> e.getName().contains(workoutRequest.getBodyGroup().getName())).collect(Collectors.toList());
 
+        List<Exercise> generatedExercises = new ArrayList<>();
+        for (Equipment equipment : workoutRequest.getEquipment()) {
+            //TODO unhardcore this. Get actual exercise count
+            Integer count = 8 / workoutRequest.getEquipment().size();
 
-//        for (Exercise exercise : exerciseList) {
-//            exercise.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment());
+            generatedExercises.addAll(exerciseList.stream().filter(e -> e.getEquipment()
+                    .equalsIgnoreCase(equipment.getName())).limit(count).collect(Collectors.toList()));
 
-//        }
-//        List<String> filteredEquipments = exerciseList.stream()
-//                .filter(e -> e.getEquipment().equalsIgnoreCase(workoutRequest.getEquipment()
-//                                .stream().map(Equipment::getName).toString()collect(Collectors.toList());
-//
+        }
+
+
+
+
+//        List<Exercise> filteredEquipments = exerciseList.stream()
+//                .filter(e -> workoutRequest.getEquipment().stream()
+//                        .map(Equipment::getName)
+//                        .anyMatch(name -> name.equalsIgnoreCase(e.getEquipment()))).collect(Collectors.toList());
+
+
 //        List<String> equipmentStrings = filteredEquipments.stream().map(Equipment::getName).collect(Collectors.toList());
 //        exerciseList = getByMultipleEquipment(equipmentStrings);
 
-        return limitedExerciseListForTest;
+        Collections.shuffle(generatedExercises);
+        return generatedExercises;
     }
 
     //randomly pull from each body part twice
