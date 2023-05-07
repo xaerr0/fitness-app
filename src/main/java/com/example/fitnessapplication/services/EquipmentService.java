@@ -12,7 +12,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
@@ -52,5 +54,18 @@ public class EquipmentService {
         } else {
             return null;
         }
+    }
+
+    public List<Equipment> getFilteredEquipment() {
+
+        List<Equipment> filteredEquipment = getAllEquipment();
+        filteredEquipment.stream().anyMatch(equipment -> equipment.getGroups().stream()
+                .anyMatch(group -> group.getName().equalsIgnoreCase(equipment.getName())));
+
+
+
+
+    return filteredEquipment;
+
     }
 }
