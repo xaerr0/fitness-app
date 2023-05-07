@@ -4,21 +4,16 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <!-- Bootstrap CSS -->
     <link th:href="@{/css/generator.css}" href="/css/generator.css"
           rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/generator.css"/>
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-            crossorigin="anonymous"
-    />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+          crossorigin="anonymous"/>
 </head>
 <body>
 <form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
@@ -41,17 +36,17 @@
 
                 <!--            Target Muscles-->
 
-<!--                IMPLEMENT LATER-->
+                <!--                IMPLEMENT LATER-->
 
-<!--                <p class="card-text">Select Target Muscles</p>-->
-<!--                <select class="form-select form-select-sm mt-3" th:name="targetId">-->
-<!--                    <option th:if="${targetList.isEmpty}">None Available</option>-->
-<!--                    <option-->
-<!--                            th:each="target : ${targetList}"-->
-<!--                            th:value="${target.id}"-->
-<!--                            th:text="${target.toString}">-->
-<!--                    </option>-->
-<!--                </select>-->
+                <!--                <p class="card-text">Select Target Muscles</p>-->
+                <!--                <select class="form-select form-select-sm mt-3" th:name="targetId">-->
+                <!--                    <option th:if="${targetList.isEmpty}">None Available</option>-->
+                <!--                    <option-->
+                <!--                            th:each="target : ${targetList}"-->
+                <!--                            th:value="${target.id}"-->
+                <!--                            th:text="${target.toString}">-->
+                <!--                    </option>-->
+                <!--                </select>-->
 
                 <!--            Workout Type-->
 
@@ -81,33 +76,6 @@
                     <label th:text="${equipment.toString()}"></label>
                 </th:block>
 
-                <p class="card-text">Select Available Equipment</p>
-                <div class="form-check-inline">
-
-                    <!--              Test buttons-->
-
-                    <!--              <label class="form-check-label" for="check1">-->
-                    <!--                <input-->
-                    <!--                  type="checkbox"-->
-                    <!--                  class="form-check-input"-->
-                    <!--                  id="check1"-->
-                    <!--                  name="vehicle1"-->
-                    <!--                  value="something"-->
-                    <!--                  checked-->
-                    <!--                />Option 1-->
-                    <!--              </label>-->
-                    <!--            </div>-->
-                    <!--            <div class="form-check-inline">-->
-                    <!--              <label class="form-check-label" for="check2">-->
-                    <!--                <input-->
-                    <!--                  type="checkbox"-->
-                    <!--                  class="form-check-input"-->
-                    <!--                  id="check2"-->
-                    <!--                  name="vehicle2"-->
-                    <!--                  value="something"-->
-                    <!--                />Option 2-->
-                    <!--              </label>-->
-                    <!--            </div>-->
 
                     <button name="submit" class="btn btn-primary btn-sm" type="submit">
                         Generate Workout
@@ -116,47 +84,67 @@
 
 
                 <!-- </div> -->
-            </div>
+
         </div>
 </form>
 
-<div class="col-lg-4 mb-2">
-    <div class="article-card">
-        <div class="content">
-            <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>
-
-            <!-- Exercise # -->
-            <p class="exercise-num">Exercise 1</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Kettlebell One Arm Row</p>
-        </div>
-    </div>
-
-    <div class="article-card">
-        <div class="content">
-            <!-- Exercise # -->
-            <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
-
-            <p class="exercise-num">Exercise 2</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-    </div>
-
-    <div class="article-card">
-        <div class="content">
-            <!-- Exercise # -->
-            <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
-
-            <p class="exercise-num">Exercise 2</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-    </div>
 
 
-    <a href="#" id="reset-btn" class="btn btn-outline-primary btn-sm"> Reset </a>
-</div>
+<!--GENERATED OUTPUT-->
+<!--<div class="col-lg-4 mb-2">-->
+
+<!--    <div class="article-card" th:each="exercise,iter : ${exerciseRequest}">-->
+<!--        <div class="content">-->
+<!--            &lt;!&ndash;            <td th:text="${exercise.id}"></td>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <td th:text="${exercise.bodyPart}"></td>&ndash;&gt;-->
+<!--            <p class="exercise-num">Exercise <span th:text="${iter.count}"></span>-->
+<!--            </p>-->
+<!--            <p class="exercise-name" th:text="${exercise.name}"></p>-->
+<!--            &lt;!&ndash;            <td th:text="${exercise.target}"></td>&ndash;&gt;-->
+<!--            <img class="animGif" th:src="${exercise.exerciseGif}">-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="col-lg-4 mb-2">-->
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>-->
+
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <p class="exercise-num">Exercise 1</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Kettlebell One Arm Row</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>-->
+
+<!--            <p class="exercise-num">Exercise 2</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Lever Preacher Curl</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>-->
+
+<!--            <p class="exercise-num">Exercise 2</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Lever Preacher Curl</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <a href="#" id="reset-btn" class="btn btn-outline-primary btn-sm"> Reset </a>-->
+<!--</div>-->
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
