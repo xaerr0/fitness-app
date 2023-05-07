@@ -57,6 +57,6 @@ public class UserController {
 //        model.addAttribute("exercise", exercise);
         List<Exercise> exerciseRequest = exerciseService.getExercises(workoutRequest);
         model.addAttribute("exerciseRequest", exerciseRequest);
-        return "generator";
+        return "generated";
     }
 }
