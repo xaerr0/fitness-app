@@ -206,17 +206,14 @@ public class ExerciseService {
 
         List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
 
-
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
 
-        // Limit results to 5 for testing purposes
-//        List<Exercise> limitedExerciseListForTest = exerciseList.stream().limit(5).collect(Collectors.toList());
         //TODO filter exerciseList by equipment in workoutRequest
 
-        List<Equipment> equipmentList = equipmentService.getAllEquipment();
-
-        List<Equipment> filteredEquipment = equipmentList.stream()
-                .filter(e -> e.getName().contains(workoutRequest.getBodyGroup().getName())).collect(Collectors.toList());
+//        List<Equipment> equipmentList = equipmentService.getAllEquipment();
+//
+//        List<Equipment> filteredEquipment = equipmentList.stream()
+//                .filter(e -> e.getName().contains(workoutRequest.getBodyGroup().getName())).collect(Collectors.toList());
 
         List<Exercise> generatedExercises = new ArrayList<>();
         for (Equipment equipment : workoutRequest.getEquipment()) {
