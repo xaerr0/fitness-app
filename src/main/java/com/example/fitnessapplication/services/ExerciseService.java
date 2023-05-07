@@ -229,17 +229,6 @@ public class ExerciseService {
         }
 
 
-
-
-//        List<Exercise> filteredEquipments = exerciseList.stream()
-//                .filter(e -> workoutRequest.getEquipment().stream()
-//                        .map(Equipment::getName)
-//                        .anyMatch(name -> name.equalsIgnoreCase(e.getEquipment()))).collect(Collectors.toList());
-
-
-//        List<String> equipmentStrings = filteredEquipments.stream().map(Equipment::getName).collect(Collectors.toList());
-//        exerciseList = getByMultipleEquipment(equipmentStrings);
-
         Collections.shuffle(generatedExercises);
         return generatedExercises;
     }
