@@ -12,9 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
@@ -49,6 +47,7 @@ public class EquipmentService {
                 restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<Equipment>>() {
                 });
 
+
         if (response.getStatusCode().equals(HttpStatus.OK) && response.getBody() != null) {
             return response.getBody();
         } else {
@@ -57,15 +56,24 @@ public class EquipmentService {
     }
 
     public List<Equipment> getFilteredEquipment() {
-
         List<Equipment> filteredEquipment = getAllEquipment();
-        filteredEquipment.stream().anyMatch(equipment -> equipment.getGroups().stream()
-                .anyMatch(group -> group.getName().equalsIgnoreCase(equipment.getName())));
 
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Assisted"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Elliptical Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Hammer"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Leverage Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Roller"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Rope"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Skierg Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Sled Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Smith Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Stationary Bike"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Stepmill Machine"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Tire"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Upper Body Ergometer"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Weighted"));
+        filteredEquipment.removeIf(e -> e.getName().equalsIgnoreCase("Wheel Roller"));
 
-
-
-    return filteredEquipment;
-
+        return filteredEquipment;
     }
 }
