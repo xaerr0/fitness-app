@@ -37,7 +37,7 @@ public class UserController {
 
     @GetMapping("/generator")
     public String generatorPage(Model model) {
-        List<Equipment> equipmentList = equipmentService.getAllEquipment();
+        List<Equipment> equipmentList = equipmentService.getFilteredEquipment();
         model.addAttribute("equipmentList", equipmentList);
         List<BodyPart> bodyPartList = bodypartService.getAllBodyParts();
         model.addAttribute("bodyPartList", bodyPartList);
