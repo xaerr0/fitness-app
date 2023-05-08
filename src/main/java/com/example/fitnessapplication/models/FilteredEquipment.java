@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class FilteredEquipment {
-    private String name;
+    private String EquipmentGroup;
 }
