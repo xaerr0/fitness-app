@@ -15,5 +15,6 @@ public class WorkoutRequest {
 
     private List<Equipment> equipment;
     private BodyGroup bodyGroup;
+    private Integer minutes;
 
 }
