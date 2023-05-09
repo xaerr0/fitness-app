@@ -24,21 +24,22 @@ public class Equipment {
     //    @OneToOne
     private String name;
 
-    private List<FilteredEquipment> groups;
+//    private List<FilteredEquipment> groups;
 
 
 
     public Equipment(String name) {
         this.name = name;
-        groups = new ArrayList<>();
-        FilteredEquipment filteredEquipment = new FilteredEquipment("Filtered Equipment");
-
-        if (name.equals("band") || name.equals("barbell") || name.equals("body weight") || name.equals("bosu ball") ||
-            name.equals("cable") || name.equals("dumbbell") || name.equals("ez barbell") || name.equals("kettlebell") ||
-            name.equals("medicine ball") || name.equals("olympic barbell") || name.equals("resistance band") ||
-            name.equals("stability ball") || name.equals("trap bar")) {
-            groups.add(filteredEquipment);
-        }
+        //TODO Later add possibility of equipment groups? Cardio equipment, Gym equipment, Free Weights, etc..
+//        groups = new ArrayList<>();
+//        FilteredEquipment filteredEquipment = new FilteredEquipment("Filtered Equipment");
+//
+//        if (name.equals("band") || name.equals("barbell") || name.equals("body weight") || name.equals("bosu ball") ||
+//            name.equals("cable") || name.equals("dumbbell") || name.equals("ez barbell") || name.equals("kettlebell") ||
+//            name.equals("medicine ball") || name.equals("olympic barbell") || name.equals("resistance band") ||
+//            name.equals("stability ball") || name.equals("trap bar")) {
+//            groups.add(filteredEquipment);
+//        }
     }
 
     public String getName() {
