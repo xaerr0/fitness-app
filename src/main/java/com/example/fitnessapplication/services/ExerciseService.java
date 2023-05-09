@@ -9,7 +9,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 
 
 @Service
@@ -201,27 +199,27 @@ public class ExerciseService {
         List<Exercise> exerciseList = null;
         List<BodyPart> filteredBodyParts = bodyParts.stream()
                 .filter(b -> b.getGroups().stream()
-                        .anyMatch(group -> group.getName().equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
+                        .anyMatch(group -> group.getName()
+                                .equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
                 .collect(Collectors.toList());
 
-        List<String> bodyPartStrings = filteredBodyParts.stream().map(BodyPart::getName).collect(Collectors.toList());
+        List<String> bodyPartStrings = filteredBodyParts.stream()
+                .map(BodyPart::getName)
+                .collect(Collectors.toList());
 
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
 
-        //TODO filter exerciseList by equipment in workoutRequest
-
-//        List<Equipment> equipmentList = equipmentService.getAllEquipment();
-//
-//        List<Equipment> filteredEquipment = equipmentList.stream()
-//                .filter(e -> e.getName().contains(workoutRequest.getBodyGroup().getName())).collect(Collectors.toList());
 
         List<Exercise> generatedExercises = new ArrayList<>();
         for (Equipment equipment : workoutRequest.getEquipment()) {
-            //TODO unhardcore this. Get actual exercise count
+            //TODO un hardcode this. Get actual exercise count
             Integer count = 8 / workoutRequest.getEquipment().size();
 
-            generatedExercises.addAll(exerciseList.stream().filter(e -> e.getEquipment()
-                    .equalsIgnoreCase(equipment.getName())).limit(count).collect(Collectors.toList()));
+            generatedExercises.addAll(exerciseList.stream()
+                    .filter(e -> e.getEquipment()
+                            .equalsIgnoreCase(equipment.getName()))
+                    .limit(count)
+                    .collect(Collectors.toList()));
 
         }
 
