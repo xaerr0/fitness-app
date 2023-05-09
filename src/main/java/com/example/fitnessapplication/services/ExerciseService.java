@@ -30,8 +30,8 @@ public class ExerciseService {
     @Autowired
     BodyPartService bodyPartService;
 
-    @Autowired
-    EquipmentService equipmentService;
+//    @Autowired
+//    EquipmentService equipmentService;
 
 
     //    @Autowired
