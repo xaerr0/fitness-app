@@ -55,6 +55,7 @@ public class EquipmentService {
         }
     }
 
+    //TODO Remove this from getExercises() method prior to calling getAllBodyParts()?
     public List<Equipment> getFilteredEquipment() {
         List<Equipment> filteredEquipment = getAllEquipment();
 
