@@ -28,10 +28,10 @@
 
                             <h5 class="card-title">Create Your Workout</h5>
                             <p class="card-text">How many minutes</p>
-                            <select class="form-select form-select-sm mt-3" th:name="timeLimit">
-                                <option value="6">30</option>
-                                <option value="8">45</option>
-                                <option value="10">60</option>
+                            <select class="form-select form-select-sm mt-3" th:field="${workoutRequest.minutes}">
+                                <option th:value="30">30</option>
+                                <option th:value="45">45</option>
+                                <option th:value="60">60</option>
                             </select>
 
                 <!--            Target Muscles-->
