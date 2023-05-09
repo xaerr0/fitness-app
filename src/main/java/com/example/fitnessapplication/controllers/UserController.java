@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     BodyGroupService bodyGroupService;
 
+
+
+
     @GetMapping("/register")
     public String login() {
         return "/register";
@@ -47,15 +51,13 @@ public class UserController {
         model.addAttribute("bodyGroupList", bodyGroupList);
         WorkoutRequest workoutRequest = new WorkoutRequest();
         model.addAttribute("workoutRequest", workoutRequest);
-        model.addAttribute("timeLimit", workoutRequest);
+
+
         return "generator";
     }
 
     @PostMapping("/generated")
     public String submitGenerator(@ModelAttribute("workoutRequest") WorkoutRequest workoutRequest, Model model) {
-//        List<Exercise> exercise = exerciseService.getByMultipleEquipment(equipmentList);
-//        model.addAttribute("equipmentName", equipmentList);
-//        model.addAttribute("exercise", exercise);
         List<Exercise> exerciseRequest = exerciseService.getExercises(workoutRequest);
         model.addAttribute("exerciseRequest", exerciseRequest);
         return "generated";
