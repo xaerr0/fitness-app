@@ -47,6 +47,7 @@ public class UserController {
         model.addAttribute("bodyGroupList", bodyGroupList);
         WorkoutRequest workoutRequest = new WorkoutRequest();
         model.addAttribute("workoutRequest", workoutRequest);
+        model.addAttribute("timeLimit", workoutRequest);
         return "generator";
     }
 
