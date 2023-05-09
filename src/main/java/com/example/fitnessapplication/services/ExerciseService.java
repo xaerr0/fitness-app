@@ -209,18 +209,25 @@ public class ExerciseService {
 
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
 
-
+        //TODO Not 100% yet. logic works with even num of equipment
         List<Exercise> generatedExercises = new ArrayList<>();
         for (Equipment equipment : workoutRequest.getEquipment()) {
-            //TODO un hardcode this. Get actual exercise count
-            Integer count = 8 / workoutRequest.getEquipment().size();
+            Integer count = null;
+            if (workoutRequest.getMinutes() == 30) {
+                count = 6;
+            } else if (workoutRequest.getMinutes() == 45) {
+                count = 8;
+            } else if (workoutRequest.getMinutes() == 60) {
+                count = 10;
+            }
 
-            generatedExercises.addAll(exerciseList.stream()
-                    .filter(e -> e.getEquipment()
-                            .equalsIgnoreCase(equipment.getName()))
-                    .limit(count)
-                    .collect(Collectors.toList()));
-
+            if (count != null) {
+                generatedExercises.addAll(exerciseList.stream()
+                        .filter(e -> e.getEquipment()
+                                .equalsIgnoreCase(equipment.getName()))
+                        .limit(count / workoutRequest.getEquipment().size())
+                        .collect(Collectors.toList()));
+            }
         }
 
 
