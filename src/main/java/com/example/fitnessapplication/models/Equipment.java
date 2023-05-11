@@ -21,11 +21,9 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //    @OneToOne
     private String name;
 
 //    private List<FilteredEquipment> groups;
-
 
 
     public Equipment(String name) {
