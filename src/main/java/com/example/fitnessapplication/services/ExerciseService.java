@@ -131,7 +131,6 @@ public class ExerciseService {
         return exercises;
     }
 
-
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/target/" + target)
@@ -150,7 +149,6 @@ public class ExerciseService {
         }
     }
 
-
     public List<Exercise> getByMultipleTargets(List<String> targetList) {
         List<Exercise> exercises = new ArrayList<>();
         for (String target : targetList) {
@@ -162,7 +160,6 @@ public class ExerciseService {
         }
         return exercises;
     }
-
 
     //Exercise By Equipment
     public List<Exercise> getByEquipment(String equipment) {
@@ -228,8 +225,8 @@ public class ExerciseService {
                         .limit(count / workoutRequest.getEquipment().size())
                         .collect(Collectors.toList()));
             }
-        }
 
+        }
 
         Collections.shuffle(generatedExercises);
         return generatedExercises;
