@@ -1,242 +1,264 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <!-- Bootstrap CSS -->
     <link
-      th:href="@{/css/generator-test.css}"
-      href="/css/generator-test.css"
-      rel="stylesheet"
-      type="text/css"
+            th:href="@{/css/generator-test.css}"
+            href="/css/generator-test.css"
+            rel="stylesheet"
+            type="text/css"
     />
-    <link rel="stylesheet" type="text/css" href="/static/css/generator-test.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/generator-test.css"/>
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous"
     />
-  </head>
-  <body>
-    <div class="signup-container">
-      <!-- <div class="left-container">
-      <h1>
-        <i class="fas fa-paw"></i>
-        PUPASSURE
-      </h1>
-      <div class="puppy">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png">
-      </div>
-    </div> -->
-    <form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
-      <div class="right-container">
-        <header>
-          <h1>Randomize Your Workout!</h1>
-
-          <!-- USE RADIO OPTIONS BELOW FOR THIS   -->
-          <!-- <p class="card-text"></p> -->
-          <!-- <div class="set"> -->
-            <!-- <select id="dropdown" th:field="${workoutRequest.minutes}">
-                <option th:value="30">30</option>
-                <option th:value="45">45</option>
-                <option th:value="60">60</option>
-            </select> -->
-
-            <div class="minutes">
-              <label for="set">How many minutes?</label>
-              <div class="radio-container" th:field="${workoutRequest.minutes}">
-                <input
-                  checked=""
-                  id="30-min"
-                  name="pet-weight"
-                  type="radio"
-                  th:value="30"
-                />
-                <label for="30-min">30 minutes</label>
-                <input
-                  id="45-min"
-                  name="pet-weight"
-                  type="radio"
-                  th:value="45"
-                />
-                <label for="45-min">45 minutes</label>
-                <input
-                  id="60-min"
-                  name="pet-weight"
-                  type="radio"
-                  th:value="60"
-                />
-                <label for="60-min">60 minutes</label>
-              </div>
-            </div>
-
-
-            <div class="minutes">
-              <label for="set">Select Workout Type</label>
-              <div class="radio-container" th:field="*{bodyGroup}" >
-                <input th:each="group : ${bodyGroupList}"
-                  checked=""
-                  id="${group.name}"
-                  name="pet-weight"
-                  type="radio"
-
-                  th:value="${group.name}"
-                  />
-
-                <label th:for="${group.name}" th:text="${group.name}"></label>
-
-
-              </div>
-            </div>
-
-        </form>
-
-
-
-
-          <!-- <div class="pets-weight">
-            <label for="pet-weight-0-25">How many minutes?</label>
-            <div class="radio-container">
-              <input
-                checked=""
-                id="pet-weight-0-25"
-                name="pet-weight"
-                type="checkbox"
-                value="0-25"
-              />
-              <label for="pet-weight-0-25">Band</label>
-              <input
-                id="pet-weight-25-50"
-                name="pet-weight"
-                type="checkbox"
-                value="25-50"
-              />
-              <label for="pet-weight-25-50">Barbell</label>
-              <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">BodyWeight</label>
-              <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Bosu Ball</label>
-              <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Cable</label> -->
-
-
-
-
-
-
-            </div>
-
-            <!-- <div class="radio-container">
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">MedicineBall</label>
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Dumbell</label>
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Ez Bar</label>
-              <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Kettlebell</label> -->
-
-
-
-
-
-            </div>
-
-            <!-- <div class="radio-container">
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">OlympicBarbell</label>
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">ResistanceBand</label>
-                <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">StabilityBall</label>
-              <input
-                id="pet-weight-50-100"
-                name="pet-weight"
-                type="checkbox"
-                value="50-100"
-              />
-              <label for="pet-weight-50-100">Trap Bar</label>
-
-
-
-            </div> -->
-          </div>
-        </header>
-        <footer>
-          <div class="set">
-            <button id="back">Back</button>
-            <button id="next">Next</button>
-          </div>
-        </footer>
-      </div>
+</head>
+<body>
+<div class="signup-container">
+    <!-- <div class="left-container">
+    <h1>
+      <i class="fas fa-paw"></i>
+      PUPASSURE
+    </h1>
+    <div class="puppy">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png">
     </div>
+  </div> -->
+    <form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
+        <div class="right-container">
+            <header>
+                <h1>Randomize Your Workout!</h1>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+                <!-- USE RADIO OPTIONS BELOW FOR THIS   -->
+                <!-- <p class="card-text"></p> -->
+                <!-- <div class="set"> -->
+                <!-- <select id="dropdown" th:field="${workoutRequest.minutes}">
+                    <option th:value="30">30</option>
+                    <option th:value="45">45</option>
+                    <option th:value="60">60</option>
+                </select> -->
+
+                <div class="minutes">
+                    <label for="set">How many minutes?</label>
+                    <div class="radio-container" th:field="${workoutRequest.minutes}">
+                        <input
+                                checked=""
+                                id="30-min"
+                                name="minutes"
+                                type="radio"
+                                th:value="30"
+                        />
+                        <label for="30-min">30 minutes</label>
+                        <input
+                                
+                                id="45-min"
+                                name="minutes"
+                                type="radio"
+                                th:value="45"
+                        />
+                        <label for="45-min">45 minutes</label>
+                        <input
+                                
+                                id="60-min"
+                                name="minutes"
+                                type="radio"
+                                th:value="60"
+                        />
+                        <label for="60-min">60 minutes</label>
+                    </div>
+                </div>
+
+<!--//TODO FIGURE THIS OUT!-->
+                <div class="minutes">
+                    <label for="set">Select Workout Type</label>
+                    <div class="radio-container" th:field="*{bodyGroup}">
+                        <input
+                                checked=""
+                                th:id="${bodyGroupList.get(0).getName()}"
+                                name="body-group"
+                                type="radio"
+                                th:value="${bodyGroupList.get(0).getName()}"
+                        />
+                        <label th:for="${bodyGroupList.get(0).getName()}" th:text="${bodyGroupList.get(0).getName()}">Upper Body</label>
+                        <input
+                                checked=""
+                                th:id="${bodyGroupList.get(1).getName()}"
+                                name="body-group"
+                                type="radio"
+                                th:value="${bodyGroupList.get(1).getName()}"
+                        />
+                        <label th:for="${bodyGroupList.get(1).getName()}" th:text="${bodyGroupList.get(1).getName()}">Lower Body</label>
+                        <input
+                                checked=""
+                                th:id="${bodyGroupList.get(2).getName()}"
+                                name="body-group"
+                                type="radio"
+                                th:value="${bodyGroupList.get(2).getName()}"
+                        />
+                        <label th:for="${bodyGroupList.get(2).getName()}" th:text="${bodyGroupList.get(2).getName()}">Full Body</label>
+                        <input
+                                checked=""
+                                th:id="${bodyGroupList.get(3).getName()}"
+                                name="body-group"
+                                type="radio"
+                                th:value="${bodyGroupList.get(3).getName()}"
+                        />
+                        <label th:for="${bodyGroupList.get(3).getName()}" th:text="${bodyGroupList.get(3).getName()}">Abs</label>
+                        <input
+                                checked=""
+                                th:id="${bodyGroupList.get(4).getName()}"
+                                name="body-group"
+                                type="radio"
+                                th:value="${bodyGroupList.get(4).getName()}"
+                        />
+                        <label th:for="${bodyGroupList.get(4).getName()}" th:text="${bodyGroupList.get(4).getName()}">Cardio</label>
+
+                </div>
+        </div>
+
+    </form>
+
+
+    <!-- <div class="pets-weight">
+      <label for="pet-weight-0-25">How many minutes?</label>
+      <div class="radio-container">
+        <input
+          checked=""
+          id="pet-weight-0-25"
+          name="pet-weight"
+          type="checkbox"
+          value="0-25"
+        />
+        <label for="pet-weight-0-25">Band</label>
+        <input
+          id="pet-weight-25-50"
+          name="pet-weight"
+          type="checkbox"
+          value="25-50"
+        />
+        <label for="pet-weight-25-50">Barbell</label>
+        <input
+          id="pet-weight-50-100"
+          name="pet-weight"
+          type="checkbox"
+          value="50-100"
+        />
+        <label for="pet-weight-50-100">BodyWeight</label>
+        <input
+          id="pet-weight-50-100"
+          name="pet-weight"
+          type="checkbox"
+          value="50-100"
+        />
+        <label for="pet-weight-50-100">Bosu Ball</label>
+        <input
+          id="pet-weight-50-100"
+          name="pet-weight"
+          type="checkbox"
+          value="50-100"
+        />
+        <label for="pet-weight-50-100">Cable</label> -->
+
+
+</div>
+
+<!-- <div class="radio-container">
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">MedicineBall</label>
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">Dumbell</label>
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">Ez Bar</label>
+  <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">Kettlebell</label> -->
+
+
+</div>
+
+<!-- <div class="radio-container">
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">OlympicBarbell</label>
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">ResistanceBand</label>
+    <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">StabilityBall</label>
+  <input
+    id="pet-weight-50-100"
+    name="pet-weight"
+    type="checkbox"
+    value="50-100"
+  />
+  <label for="pet-weight-50-100">Trap Bar</label>
+
+
+
+</div> -->
+</div>
+</header>
+<footer>
+    <div class="set">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+    </div>
+</footer>
+</div>
+</div>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>
