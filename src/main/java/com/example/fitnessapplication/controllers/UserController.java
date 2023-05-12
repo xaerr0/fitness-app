@@ -51,7 +51,7 @@ public class UserController {
         WorkoutRequest workoutRequest = new WorkoutRequest();
         model.addAttribute("workoutRequest", workoutRequest);
 
-        return "generator";
+        return "generator-test";
     }
 
     @PostMapping("/generated")
