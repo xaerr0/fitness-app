@@ -1,144 +1,242 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <!-- Bootstrap CSS -->
-    <link th:href="@{/css/generator.css}" href="/css/generator.css"
-          rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/generator.css"/>
     <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-            crossorigin="anonymous"
+      th:href="@{/css/generator-test.css}"
+      href="/css/generator-test.css"
+      rel="stylesheet"
+      type="text/css"
     />
-</head>
-<body>
-<form>
-    <div class="row">
-        <div class="col-lg-12 mb-8">
-            <!-- <div class="card-body"> -->
-            <img class="card-img-top" src="" alt=""/>
+    <link rel="stylesheet" type="text/css" href="/static/css/generator-test.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="signup-container">
+      <!-- <div class="left-container">
+      <h1>
+        <i class="fas fa-paw"></i>
+        PUPASSURE
+      </h1>
+      <div class="puppy">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png">
+      </div>
+    </div> -->
+    <form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
+      <div class="right-container">
+        <header>
+          <h1>Randomize Your Workout!</h1>
 
-            <div class="card-body1">
-                <h5 class="card-title">Create Your Workout</h5>
-                <p class="card-text">How many minutes</p>
-                <select class="form-select form-select-sm mt-3">
-                    <option>30</option>
-                    <option>45</option>
-                    <option>60</option>
-                </select>
+          <!-- USE RADIO OPTIONS BELOW FOR THIS   -->
+          <!-- <p class="card-text"></p> -->
+          <!-- <div class="set"> -->
+            <!-- <select id="dropdown" th:field="${workoutRequest.minutes}">
+                <option th:value="30">30</option>
+                <option th:value="45">45</option>
+                <option th:value="60">60</option>
+            </select> -->
 
-                <p class="card-text">Select Target Muscles</p>
-                <select class="form-select form-select-sm mt-3" th:name="targetId">
-                    <option th:if="${targetList.isEmpty}">None Available</option>
-                    <option
-                            th:each="target : ${targetList}"
-                            th:value="${target.id}"
-                            th:text="${target.toString}"
-                    ></option>
-                </select>
-
-                <p class="card-text">Select Workout Type</p>
-
-                <select class="form-select form-select-sm mt-3">
-                    <option>Full Body</option>
-                    <option>Upper Body</option>
-                    <option>Lower Body</option>
-                    <option>Cardio</option>
-                </select>
-
-                <p class="card-text">Select Equipment</p>
-                <label th:if="${equipmentList.isEmpty()}"> None Available </label>
-                <th:block th:each="equipment : ${equipmentList}">
-                    <input
-                            type="checkbox"
-                            class="form-check-input"
-                            name="equipment"
-                            th:value="${equipment.id}"
-                    />
-                    <label th:text="${equipment.toString()}"></label>
-                </th:block>
-
-                <p class="card-text">Select Available Equipment</p>
-                <div class="form-check-inline">
-                    <label class="form-check-label" for="check1">
-                        <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="check1"
-                                name="vehicle1"
-                                value="something"
-                                checked
-                        />Option 1
-                    </label>
-                </div>
-                <div class="form-check-inline">
-                    <label class="form-check-label" for="check2">
-                        <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="check2"
-                                name="vehicle2"
-                                value="something"
-                        />Option 2
-                    </label>
-                </div>
-
-                <a href="#" class="btn btn-outline-primary btn-sm">
-                    Generate Workout
-                </a>
+            <div class="minutes">
+              <label for="set">How many minutes?</label>
+              <div class="radio-container" th:field="${workoutRequest.minutes}">
+                <input
+                  checked=""
+                  id="30-min"
+                  name="pet-weight"
+                  type="radio"
+                  th:value="30"
+                />
+                <label for="30-min">30 minutes</label>
+                <input
+                  id="45-min"
+                  name="pet-weight"
+                  type="radio"
+                  th:value="45"
+                />
+                <label for="45-min">45 minutes</label>
+                <input
+                  id="60-min"
+                  name="pet-weight"
+                  type="radio"
+                  th:value="60"
+                />
+                <label for="60-min">60 minutes</label>
+              </div>
             </div>
-            <!-- </div> -->
-        </div>
+
+
+            <div class="minutes">
+              <label for="set">Select Workout Type</label>
+              <div class="radio-container" th:field="*{bodyGroup}" >
+                <input th:each="group : ${bodyGroupList}"
+                  checked=""
+                  id="${group.name}"
+                  name="pet-weight"
+                  type="radio"
+
+                  th:value="${group.name}"
+                  />
+
+                <label th:for="${group.name}" th:text="${group.name}"></label>
+
+
+              </div>
+            </div>
+
+        </form>
+
+
+
+
+          <!-- <div class="pets-weight">
+            <label for="pet-weight-0-25">How many minutes?</label>
+            <div class="radio-container">
+              <input
+                checked=""
+                id="pet-weight-0-25"
+                name="pet-weight"
+                type="checkbox"
+                value="0-25"
+              />
+              <label for="pet-weight-0-25">Band</label>
+              <input
+                id="pet-weight-25-50"
+                name="pet-weight"
+                type="checkbox"
+                value="25-50"
+              />
+              <label for="pet-weight-25-50">Barbell</label>
+              <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">BodyWeight</label>
+              <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Bosu Ball</label>
+              <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Cable</label> -->
+
+
+
+
+
+
+            </div>
+
+            <!-- <div class="radio-container">
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">MedicineBall</label>
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Dumbell</label>
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Ez Bar</label>
+              <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Kettlebell</label> -->
+
+
+
+
+
+            </div>
+
+            <!-- <div class="radio-container">
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">OlympicBarbell</label>
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">ResistanceBand</label>
+                <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">StabilityBall</label>
+              <input
+                id="pet-weight-50-100"
+                name="pet-weight"
+                type="checkbox"
+                value="50-100"
+              />
+              <label for="pet-weight-50-100">Trap Bar</label>
+
+
+
+            </div> -->
+          </div>
+        </header>
+        <footer>
+          <div class="set">
+            <button id="back">Back</button>
+            <button id="next">Next</button>
+          </div>
+        </footer>
+      </div>
     </div>
-</form>
 
-<div class="col-lg-4 mb-2">
-    <div class="article-card">
-        <div class="content">
-            <img src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>
-
-            <!-- Exercise # -->
-            <p class="exercise-num">Exercise 1</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Kettlebell One Arm Row</p>
-        </div>
-    </div>
-
-    <div class="article-card">
-        <div class="content">
-            <!-- Exercise # -->
-            <img src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
-
-            <p class="exercise-num">Exercise 2</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-    </div>
-
-
-    <a href="#" id="reset-btn" class="btn btn-outline-primary btn-sm"> Reset </a>
-</div>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"
-></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
