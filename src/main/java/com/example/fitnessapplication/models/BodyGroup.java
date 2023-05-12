@@ -10,4 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BodyGroup {
     private String name;
+
+    @Override
+    public String toString() {
+        name = name.replace(" ", "-");
+        return name;
+    }
 }
