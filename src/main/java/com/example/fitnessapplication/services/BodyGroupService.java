@@ -40,6 +40,7 @@ public class BodyGroupService {
         return List.of(
                 new BodyGroup ("Upper Body"),
                 new BodyGroup ("Lower Body"),
+                new BodyGroup ("Full Body"),
                 new BodyGroup ("Abs"),
                 new BodyGroup ("Cardio"));
     }
