@@ -63,10 +63,10 @@ body {
   width: 70%;
 }
 .right-container {
-  background: #f9c7c2;
+  background: #c2f9c7;
   display: grid;
   grid-template-areas: "." ".";
-  width: 600px;
+  width: 700px;
 }
 .right-container h1:nth-of-type(1) {
   color: rgba(0, 0, 0, 0.8);
@@ -181,6 +181,9 @@ body {
   display: inline-block;
   padding: 5px;
   max-width: 46em;
+  white-space:nowrap;
+  
+
 }
 .radio-container label {
   background: transparent;
@@ -202,15 +205,16 @@ body {
   display: none;
 }
 .radio-container input[type="checkbox"]:checked + label {
-  background: #f7b1ab;
+  background: #c2f9c7;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  
 }
 
 .radio-container input[type="radio"] {
   display: none;
 }
 .radio-container input[type="radio"]:checked + label {
-  background: #f7b1ab;
+  background: #c2f9c7;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
