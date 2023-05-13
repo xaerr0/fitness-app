@@ -42,6 +42,14 @@ public class UserController {
     public String generatorPage(Model model) {
         List<Equipment> equipmentList = equipmentService.getFilteredEquipment();
         model.addAttribute("equipmentList", equipmentList);
+        List<Equipment> equipmentListFirstRow = equipmentList.subList(0, 5);
+        List<Equipment> equipmentListSecondRow = equipmentList.subList(5, 9);
+        List<Equipment> equipmentListThirdRow = equipmentList.subList(9, 13);
+
+        model.addAttribute("equipmentListFirstRow", equipmentListFirstRow);
+        model.addAttribute("equipmentListSecondRow", equipmentListSecondRow);
+        model.addAttribute("equipmentListThirdRow", equipmentListThirdRow);
+
         List<BodyPart> bodyPartList = bodypartService.getAllBodyParts();
         model.addAttribute("bodyPartList", bodyPartList);
         List<Target> targetList = targetService.getAllTargetMuscles();
