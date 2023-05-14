@@ -35,19 +35,11 @@
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png">
     </div>
   </div> -->
+
     <form action th:action="@{/generated}" th:object="${workoutRequest}" method="post">
         <div class="right-container">
             <header>
                 <h1>Randomize Your Workout!</h1>
-
-                <!-- USE RADIO OPTIONS BELOW FOR THIS   -->
-                <!-- <p class="card-text"></p> -->
-                <!-- <div class="set"> -->
-                <!-- <select id="dropdown" th:field="${workoutRequest.minutes}">
-                    <option th:value="30">30</option>
-                    <option th:value="45">45</option>
-                    <option th:value="60">60</option>
-                </select> -->
 
                 <div class="minutes">
                     <label for="set">How many minutes?</label>
@@ -82,235 +74,88 @@
                 <!-- SPACE! -->
                 <div>&nbsp;</div>
 
-
-<!--//TODO HARDCODED INDEXES, MAYBE TRY LOOP AGAIN LATER-->
+                <!--//TODO HARDCODED INDEXES, MAYBE TRY LOOP AGAIN LATER-->
                 <div class="minutes">
                     <label for="set">Select Workout Type</label>
-                    <div class="radio-container" th:field="*{bodyGroup}">
-                        <input
-                                checked=""
-                                th:id="${bodyGroupList.get(0).getName()}"
-                                name="body-group"
-                                type="radio"
-                                th:value="${bodyGroupList.get(0).getName()}"
-                        />
-                        <label th:for="${bodyGroupList.get(0).getName()}" th:text="${bodyGroupList.get(0).getName()}">Upper Body</label>
-                        <input
-                                checked=""
-                                th:id="${bodyGroupList.get(1).getName()}"
-                                name="body-group"
-                                type="radio"
-                                th:value="${bodyGroupList.get(1).getName()}"
-                        />
-                        <label th:for="${bodyGroupList.get(1).getName()}" th:text="${bodyGroupList.get(1).getName()}">Lower Body</label>
-                        <input
-                                checked=""
-                                th:id="${bodyGroupList.get(2).getName()}"
-                                name="body-group"
-                                type="radio"
-                                th:value="${bodyGroupList.get(2).getName()}"
-                        />
-                        <label th:for="${bodyGroupList.get(2).getName()}" th:text="${bodyGroupList.get(2).getName()}">Full Body</label>
-                        <input
-                                checked=""
-                                th:id="${bodyGroupList.get(3).getName()}"
-                                name="body-group"
-                                type="radio"
-                                th:value="${bodyGroupList.get(3).getName()}"
-                        />
-                        <label th:for="${bodyGroupList.get(3).getName()}" th:text="${bodyGroupList.get(3).getName()}">Abs</label>
-                        <input
-                                checked=""
-                                th:id="${bodyGroupList.get(4).getName()}"
-                                name="body-group"
-                                type="radio"
-                                th:value="${bodyGroupList.get(4).getName()}"
-                        />
-                        <label th:for="${bodyGroupList.get(4).getName()}" th:text="${bodyGroupList.get(4).getName()}">Cardio</label>
+                    <div class="radio-container">
 
+                        <!--                        TODO USING FOREACH LOOP - NEEDS WORK-->
+
+                                                <th:block th:each="group : ${bodyGroupList}">
+
+                                                    <input
+                                                            th:field="*{bodyGroup}"
+                                                            th:id="${group.name}"
+                                                            type="radio"
+                                                            name="body-group"
+                                                            th:value="${group.name}"
+                                                    />
+                                                    <label th:for="${group.name}" th:text="${group.name}"></label>
+
+                                                </th:block>
+                    </div>
                 </div>
-        </div>
 
-<!-- SPACE! -->
+                <!-- SPACE! -->
                 <div>&nbsp;</div>
 
-     <div class="minutes">
-      <label for="set">Select Equipment</label>
-      <div class="radio-container">
-         <th:block th:each="equipment : ${equipmentListFirstRow}">
+                <div class="minutes">
+                    <label for="set">Select Equipment</label>
+                    <div class="radio-container">
+                        <th:block th:each="equipment : ${equipmentListFirstRow}">
 
-        <input
+                            <input
 
-                                th:id="${equipment.toString()}"
-                                name="equipment"
-                                type="checkbox"
-                                th:value="${equipment.name}"
-                        />
-                        <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
-                    </th:block>
-</div>
+                                    th:id="${equipment.toString()}"
+                                    name="equipment"
+                                    type="checkbox"
+                                    th:value="${equipment.name}"
+                            />
+                            <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
+                        </th:block>
+                    </div>
 
-<div class="minutes">
+                    <div class="minutes">
 
-    <div class="radio-container">
-       <th:block th:each="equipment : ${equipmentListSecondRow}">
+                        <div class="radio-container">
+                            <th:block th:each="equipment : ${equipmentListSecondRow}">
 
-      <input
+                                <input
 
-                              th:id="${equipment.toString()}"
-                              name="equipment"
-                              type="checkbox"
-                              th:value="${equipment.name}"
-                      />
-                      <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
-                  </th:block>
-</div>
-<div class="radio-container">
-    <th:block th:each="equipment : ${equipmentListThirdRow}">
+                                        th:id="${equipment.toString()}"
+                                        name="equipment"
+                                        type="checkbox"
+                                        th:value="${equipment.name}"
+                                />
+                                <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
+                            </th:block>
+                        </div>
+                        <div class="radio-container">
+                            <th:block th:each="equipment : ${equipmentListThirdRow}">
 
-   <input
+                                <input
 
-                           th:id="${equipment.toString()}"
-                           name="equipment"
-                           type="checkbox"
-                           th:value="${equipment.name}"
-                   />
-                   <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
-               </th:block>
-               <input
-          checked=""
-          id="pet-weight-0-25"
-          name="pet-weight"
-          type="checkbox" 
-          value="0-25"
-        />
-        <label for="pet-weight-0-25">Resistance Band</label>
-</div>
+                                        th:id="${equipment.toString()}"
+                                        name="equipment"
+                                        type="checkbox"
+                                        th:value="${equipment.name}"
+                                />
+                                <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
+                            </th:block>
 
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-
-
-
-
-
-
-
-                </form>
-
-
-        <!-- <input
-          checked=""
-          id="pet-weight-0-25"
-          name="pet-weight"
-          type="checkbox"
-          value="0-25"
-        />
-        <label for="pet-weight-0-25">Band</label>
-        <input
-          id="pet-weight-25-50"
-          name="pet-weight"
-          type="checkbox"
-          value="25-50"
-        />
-        <label for="pet-weight-25-50">Barbell</label>
-        <input
-          id="pet-weight-50-100"
-          name="pet-weight"
-          type="checkbox"
-          value="50-100"
-        />
-        <label for="pet-weight-50-100">BodyWeight</label>
-        <input
-          id="pet-weight-50-100"
-          name="pet-weight"
-          type="checkbox"
-          value="50-100"
-        />
-        <label for="pet-weight-50-100">Bosu Ball</label>
-        <input
-          id="pet-weight-50-100"
-          name="pet-weight"
-          type="checkbox"
-          value="50-100"
-        />
-        <label for="pet-weight-50-100">Cable</label>  -->
-
-
-</div>
-
-<!-- <div class="radio-container">
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">MedicineBall</label>
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">Dumbell</label>
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">Ez Bar</label>
-  <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">Kettlebell</label> -->
-
-
-
-<!-- <div class="radio-container">
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">OlympicBarbell</label>
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">ResistanceBand</label>
-    <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">StabilityBall</label>
-  <input
-    id="pet-weight-50-100"
-    name="pet-weight"
-    type="checkbox"
-    value="50-100"
-  />
-  <label for="pet-weight-50-100">Trap Bar</label>
-
-
-
-</div> -->
-</div>
-</header>
 <footer>
     <div class="set">
         <button id="back">Back</button>
-        <button id="next">Next</button>
+        <button id="next" name="submit" type="submit">Generate</button>
     </div>
 </footer>
+    </form>
+
 </div>
 </div>
 
