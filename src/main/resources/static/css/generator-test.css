@@ -133,7 +133,6 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  
 }
 .right-container footer {
   align-items: center;
@@ -181,14 +180,12 @@ body {
   display: inline-block;
   padding: 5px;
   max-width: 46em;
-  white-space:nowrap;
-  
-
+  white-space: nowrap;
 }
 .radio-container label {
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   display: inline-block;
   height: 26px;
   line-height: 26px;
@@ -203,11 +200,14 @@ body {
 
 .radio-container input[type="checkbox"] {
   display: none;
+  
 }
 .radio-container input[type="checkbox"]:checked + label {
+    display: inline-block;
   background: #c2f9c7;
+    /* width: 100px; */
+
   border: 1px solid rgba(0, 0, 0, 0.1);
-  
 }
 
 .radio-container input[type="radio"] {
@@ -219,5 +219,3 @@ body {
 }
 
 /* NEED TO FIGURE THIS OUT */
-
-
