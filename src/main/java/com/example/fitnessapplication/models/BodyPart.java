@@ -22,7 +22,6 @@ public class BodyPart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //    @OneToOne
     private String name;
 
     private List<BodyGroup> groups;
@@ -34,7 +33,7 @@ public class BodyPart {
         BodyGroup lowerBody = new BodyGroup("Lower Body");
         BodyGroup fullBody = new BodyGroup("Full Body");
 
-
+        //bodyparts to bodygroups
         if (name.equals("chest") || name.equals("back") || name.equals("shoulders") ||
             name.equals("neck") || name.equals("upper arms") || name.equals("lower arms")) {
             groups.add(upperBody);
