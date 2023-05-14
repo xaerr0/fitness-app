@@ -44,28 +44,23 @@
                 <div class="minutes">
                     <label for="set">How many minutes?</label>
                     <div class="radio-container" th:field="${workoutRequest.minutes}">
-                        <input
-                                checked=""
-                                id="30-min"
-                                name="minutes"
-                                type="radio"
-                                th:value="30"
+                        <input checked=""
+                               id="30-min"
+                               name="minutes"
+                               type="radio"
+                               th:value="30"
                         />
                         <label for="30-min">30 minutes</label>
-                        <input
-
-                                id="45-min"
-                                name="minutes"
-                                type="radio"
-                                th:value="45"
+                        <input id="45-min"
+                               name="minutes"
+                               type="radio"
+                               th:value="45"
                         />
                         <label for="45-min">45 minutes</label>
-                        <input
-
-                                id="60-min"
-                                name="minutes"
-                                type="radio"
-                                th:value="60"
+                        <input id="60-min"
+                               name="minutes"
+                               type="radio"
+                               th:value="60"
                         />
                         <label for="60-min">60 minutes</label>
                     </div>
@@ -74,25 +69,18 @@
                 <!-- SPACE! -->
                 <div>&nbsp;</div>
 
-                <!--//TODO HARDCODED INDEXES, MAYBE TRY LOOP AGAIN LATER-->
                 <div class="minutes">
                     <label for="set">Select Workout Type</label>
                     <div class="radio-container">
-
-                        <!--                        TODO USING FOREACH LOOP - NEEDS WORK-->
-
-                                                <th:block th:each="group : ${bodyGroupList}">
-
-                                                    <input
-                                                            th:field="*{bodyGroup}"
-                                                            th:id="${group.name}"
-                                                            type="radio"
-                                                            name="body-group"
-                                                            th:value="${group.name}"
-                                                    />
-                                                    <label th:for="${group.name}" th:text="${group.name}"></label>
-
-                                                </th:block>
+                        <th:block th:each="group : ${bodyGroupList}">
+                            <input th:field="*{bodyGroup}"
+                                   th:id="${group.name}"
+                                   type="radio"
+                                   name="body-group"
+                                   th:value="${group.name}"
+                            />
+                            <label th:for="${group.name}" th:text="${group.name}"></label>
+                        </th:block>
                     </div>
                 </div>
 
@@ -103,57 +91,46 @@
                     <label for="set">Select Equipment</label>
                     <div class="radio-container">
                         <th:block th:each="equipment : ${equipmentListFirstRow}">
-
-                            <input
-
-                                    th:id="${equipment.toString()}"
-                                    name="equipment"
-                                    type="checkbox"
-                                    th:value="${equipment.name}"
+                            <input th:id="${equipment.toString()}"
+                                   name="equipment"
+                                   type="checkbox"
+                                   th:value="${equipment.name}"
                             />
                             <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
                         </th:block>
                     </div>
 
                     <div class="minutes">
-
                         <div class="radio-container">
                             <th:block th:each="equipment : ${equipmentListSecondRow}">
-
-                                <input
-
-                                        th:id="${equipment.toString()}"
-                                        name="equipment"
-                                        type="checkbox"
-                                        th:value="${equipment.name}"
+                                <input th:id="${equipment.toString()}"
+                                       name="equipment"
+                                       type="checkbox"
+                                       th:value="${equipment.name}"
                                 />
                                 <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
                             </th:block>
                         </div>
                         <div class="radio-container">
                             <th:block th:each="equipment : ${equipmentListThirdRow}">
-
-                                <input
-
-                                        th:id="${equipment.toString()}"
-                                        name="equipment"
-                                        type="checkbox"
-                                        th:value="${equipment.name}"
+                                <input th:id="${equipment.toString()}"
+                                       name="equipment"
+                                       type="checkbox"
+                                       th:value="${equipment.name}"
                                 />
                                 <label th:for="${equipment.toString()}" th:text="${equipment.toString()}"></label>
                             </th:block>
-
                         </div>
                     </div>
                 </div>
             </header>
 
-<footer>
-    <div class="set">
-        <button id="back">Back</button>
-        <button id="next" name="submit" type="submit">Generate</button>
-    </div>
-</footer>
+            <footer>
+                <div class="set">
+                    <button id="back" name="reset" type="reset">Reset</button>
+                    <button id="next" name="submit" type="submit">Generate</button>
+                </div>
+            </footer>
     </form>
 
 </div>
