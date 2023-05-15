@@ -26,6 +26,7 @@ public class Target {
 
     private List<TargetGroup> groups;
 
+    //TODO add target to getExercise Service so for example 4 bicep exercises don't generate
     public Target(String target) {
         this.name = target;
         groups = new ArrayList<>();
