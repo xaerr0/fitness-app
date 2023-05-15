@@ -4,6 +4,7 @@ import com.example.fitnessapplication.dto.WorkoutRequest;
 import com.example.fitnessapplication.models.BodyPart;
 import com.example.fitnessapplication.models.Equipment;
 import com.example.fitnessapplication.models.Exercise;
+import com.example.fitnessapplication.models.Target;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,9 @@ public class ExerciseService {
 
     @Autowired
     BodyPartService bodyPartService;
+
+    @Autowired
+    TargetService targetService;
 
 //    @Autowired
 //    EquipmentService equipmentService;
@@ -225,6 +229,9 @@ public class ExerciseService {
                         .limit(count / workoutRequest.getEquipment().size())
                         .collect(Collectors.toList()));
             }
+
+            List<Target> targetMuscles = targetService.getAllTargetMuscles();
+
 
         }
 
