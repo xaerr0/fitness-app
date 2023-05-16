@@ -230,6 +230,7 @@ public class ExerciseService {
                         .collect(Collectors.toList()));
             }
 
+            //get target muscles by groups
             List<Target> targetMuscles = targetService.getAllTargetMuscles();
 
 
