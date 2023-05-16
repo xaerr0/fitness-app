@@ -44,15 +44,16 @@ body {
 	letter-spacing: 1px;
 	text-transform: uppercase;
   position: relative;
-  top: 2rem;
+  top: 3rem;
 }
 
 .course h2 {
+  /* font-size: 30; */
 	letter-spacing: 1px;
 	margin: 10px 0;
   margin-right: -10px;
   width: 58%;
-  overflow-wrap: break-word;
+  /* overflow-wrap: break-word; */
   hyphens: auto;
   
 }
