@@ -66,6 +66,6 @@ public class UserController {
     public String submitGenerator(@ModelAttribute("workoutRequest") WorkoutRequest workoutRequest, Model model) {
         List<Exercise> exerciseRequest = exerciseService.getExercises(workoutRequest);
         model.addAttribute("exerciseRequest", exerciseRequest);
-        return "generated";
+        return "workout";
     }
 }
