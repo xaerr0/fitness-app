@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
+    <link th:href="@{/css/workout.css}" href="/css/workout.css"
+          rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/workout.css" />
     <link
       rel="stylesheet"
@@ -15,96 +17,116 @@
     />
   </head>
   <body>
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">          
-          <h6>Exercise 1</h6>
-          <h2>Exercise Ball On The Wall Calf Raise</h2>          
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1382.gif"/>
-        </div>
-      </div>
-    </div>
 
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">
-          <h6>Exercise 2</h6>
-          <h2>Barbell Romanian Deadlift</h2>
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0085.gif"/>
-        </div>
-      </div>
-    </div>
+<!--  THYMELEAF START-->
 
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">
-          <h6>Exercise 3</h6>
-          <h2>Dumbbell Alternate Biceps Curl</h2>
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0285.gif"/>
-        </div>
-      </div>
-    </div>
-    
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">
-          <h6>Exercise 4</h6>
-          <h2>Dumbbell One Arm Bench Fly</h2>
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1285.gif"/>
-        </div>
-      </div>
-    </div>
-    
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">
-          <h6>Exercise 2</h6>
-          <h2>Barbell Romanian Deadlift</h2>
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0085.gif"/>
-        </div>
-      </div>
-    </div>
+<div class="courses-container" th:each="exercise,iter : ${exerciseRequest}">
+  <div class="course">
+    <div class="course-preview">
+      <h6><span th:text="${exercise.bodyGroup.name}"></span></h6>
 
-    <div class="courses-container">
-      <div class="course">
-        <div class="course-preview">
-          <h6>(Body Group)</h6>
-          <h2>4 x 12</h2>
-          <h5>Rest 30 - 60 seconds</h5>
-        </div>
-        <div class="course-info">
-          <h6>Exercise 6</h6>
-          <h2>One Arm Against Wall</h2>
-          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1355.gif"/>
-        </div>
-      </div>
+      <h2>4 x 12</h2>
+      <h5>Rest 30 - 60 seconds</h5>
     </div>
-    
+    <div class="course-info">
+      <h6>Exercise <span th:text="${iter.count}"></span></h6>
+      <h2><span th:text="${exercise.name}"></span></h2>
+      <img class="animGif" th:src="${exercise.exerciseGif}"/>
+    </div>
+  </div>
+</div>
+
+<!--THYMELEAF END-->
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 1</h6>-->
+<!--          <h2>Exercise Ball On The Wall Calf Raise</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1382.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 2</h6>-->
+<!--          <h2>Barbell Romanian Deadlift</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0085.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 3</h6>-->
+<!--          <h2>Dumbbell Alternate Biceps Curl</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0285.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 4</h6>-->
+<!--          <h2>Dumbbell One Arm Bench Fly</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1285.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 2</h6>-->
+<!--          <h2>Barbell Romanian Deadlift</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0085.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="courses-container">-->
+<!--      <div class="course">-->
+<!--        <div class="course-preview">-->
+<!--          <h6>(Body Group)</h6>-->
+<!--          <h2>4 x 12</h2>-->
+<!--          <h5>Rest 30 - 60 seconds</h5>-->
+<!--        </div>-->
+<!--        <div class="course-info">-->
+<!--          <h6>Exercise 6</h6>-->
+<!--          <h2>One Arm Against Wall</h2>-->
+<!--          <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/1355.gif"/>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

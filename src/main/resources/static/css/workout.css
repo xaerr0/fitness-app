@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
+:root {
+  --primary-color: #4C5B5C;
+  --secondary-color: #B31B1B;
+}
+
+
 * {
 	box-sizing: border-box;
 }
 
 
 body {
-	background-image: linear-gradient(45deg, #7175da, #9790F2);
+	background-image: linear-gradient(45deg, #4C5B5C, #58495B);
 	font-family: 'Muli', sans-serif;
 	display: flex;
 	align-items: center;
@@ -19,7 +25,7 @@ body {
 
 
 .course {
-	background-color: #fff;
+	background-color: #ffffff;
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	display:flex;
@@ -65,12 +71,12 @@ body {
   position: absolute;
   right: 1rem;
   top: 2rem;
-  /* overflow: hidden; */
+  overflow: hidden;
   
 }
 
 .course-preview {
-	background-color: #2A265F;
+	background-color: var(--secondary-color);
 	color: #fff;
 	padding: 30px;
 	width: 350px;
