@@ -18,42 +18,47 @@
 <body>
 
 
-<!--<div th:replace="fragments :: generated"/>-->
-<!--
-MODEL TO FINAL LOOK START-->
+<!--MODEL TO FINAL LOOK START-->
 <div class="col-lg-4 mb-2">
-    <div class="article-card">
-        <div class="content">
-            <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0541.gif"/>
 
-            <!-- Exercise # -->
-            <p class="exercise-num">Exercise 1</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Kettlebell One Arm Row</p>
+    <div class="article-card" th:each="exercise,iter : ${exerciseRequest}">
+        <div class="content">
+            <!--            <td th:text="${exercise.id}"></td>-->
+            <!--            <td th:text="${exercise.bodyPart}"></td>-->
+            <p class="exercise-num">Exercise <span th:text="${iter.count}"></span>
+            </p>
+            <p class="exercise-name" th:text="${exercise.name}"></p>
+            <!--            <td th:text="${exercise.target}"></td>-->
+            <img class="animGif" th:src="${exercise.exerciseGif}">
+
+
         </div>
     </div>
+</div>
 
-    <div class="article-card">
-        <div class="content">
-            <!-- Exercise # -->
-            <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
+<!--MODEL TO FINAL LOOK END-->
 
-            <p class="exercise-num">Exercise 2</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-    </div>
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>-->
 
-    <div class="article-card">
-        <div class="content">
-            <!-- Exercise # -->
-            <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>
+<!--            <p class="exercise-num">Exercise 2</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Lever Preacher Curl</p>-->
+<!--        </div>-->
+<!--    </div>-->
 
-            <p class="exercise-num">Exercise 2</p>
-            <!-- Exercise Name -->
-            <p class="exercise-name">Lever Preacher Curl</p>
-        </div>
-    </div>
+<!--    <div class="article-card">-->
+<!--        <div class="content">-->
+<!--            &lt;!&ndash; Exercise # &ndash;&gt;-->
+<!--            <img class="animGif" src="http://d205bpvrqc9yn1.cloudfront.net/0592.gif"/>-->
+
+<!--            <p class="exercise-num">Exercise 2</p>-->
+<!--            &lt;!&ndash; Exercise Name &ndash;&gt;-->
+<!--            <p class="exercise-name">Lever Preacher Curl</p>-->
+<!--        </div>-->
+<!--    </div>-->
 
 <!-- MODEL TO FINAL LOOK END -->
 
@@ -73,17 +78,17 @@ MODEL TO FINAL LOOK START-->
 <!--    <tbody>-->
 <!--    <div class="col-lg-4 mb-2">-->
 
-<!--        <div class="article-card" th:each="exercise : ${exerciseRequest}">-->
+        <div class="article-card" th:each="exercise : ${exerciseRequest}">
 
-<!--                <div class="content">-->
-<!--&lt;!&ndash;                    <td th:text="${exercise.id}"></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <td th:text="${exercise.bodyPart}"></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <td th:text="${exercise.equipment}"></td>&ndash;&gt;-->
-<!--                    <p class="exercise-name" td th:text="${exercise.name}"></p>-->
-<!--&lt;!&ndash;                    <td th:text="${exercise.target}"></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <td th:text="${exercise.exerciseGif}"></td>&ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
+                <div class="content">
+<!--                    <td th:text="${exercise.id}"></td>-->
+<!--                    <td th:text="${exercise.bodyPart}"></td>-->
+<!--                    <td th:text="${exercise.equipment}"></td>-->
+                    <p class="exercise-name" td th:text="${exercise.name}"></p>
+<!--                    <td th:text="${exercise.target}"></td>-->
+<!--                    <td th:text="${exercise.exerciseGif}"></td>-->
+                </div>
+            </div>
 <!--    </tr>-->
 
 <!--    </tbody>-->
