@@ -1,10 +1,7 @@
 package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.dto.WorkoutRequest;
-import com.example.fitnessapplication.models.BodyPart;
-import com.example.fitnessapplication.models.Equipment;
-import com.example.fitnessapplication.models.Exercise;
-import com.example.fitnessapplication.models.Target;
+import com.example.fitnessapplication.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -204,11 +201,21 @@ public class ExerciseService {
                                 .equalsIgnoreCase(workoutRequest.getBodyGroup().getName())))
                 .collect(Collectors.toList());
 
+        //if bodygroup = upper body then grab "these" targets?
+
+//
+
+
         List<String> bodyPartStrings = filteredBodyParts.stream()
                 .map(BodyPart::getName)
                 .collect(Collectors.toList());
 
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
+//        List<Exercise> targetFilter = exerciseList.stream().filter(t -> t.getTarget()
+//                .equalsIgnoreCase(workoutRequest.getTarget().getName())).collect(Collectors.toList());
+
+
+
 
         //TODO Not 100% yet. logic works with even num of equipment
         List<Exercise> generatedExercises = new ArrayList<>();
@@ -229,16 +236,12 @@ public class ExerciseService {
                         .limit(count / workoutRequest.getEquipment().size())
                         .collect(Collectors.toList()));
             }
-
             //get target muscles by groups
-            List<Target> targetMuscles = targetService.getAllTargetMuscles();
-
 
         }
+        generatedExercises.forEach(n -> n.setBodyGroup(workoutRequest.getBodyGroup()));
 
         Collections.shuffle(generatedExercises);
         return generatedExercises;
     }
-
-    //randomly pull from each body part twice
 }
