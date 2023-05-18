@@ -239,6 +239,7 @@ public class ExerciseService {
             //get target muscles by groups
 
         }
+        //sets bodyGroup to each exercise
         generatedExercises.forEach(n -> n.setBodyGroup(workoutRequest.getBodyGroup()));
 
         Collections.shuffle(generatedExercises);
