@@ -35,6 +35,8 @@ public class Exercise {
 //    @OneToOne
     private String exerciseGif;
 
+    private BodyGroup bodyGroup;
+
     public String getName() {
         //Capitalize every word
         String[] words = name.split(" ");
@@ -42,5 +44,10 @@ public class Exercise {
             words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
         }
         return String.join(" ", words);
+    }
+
+    public BodyGroup getBodyGroup() {
+
+        return bodyGroup;
     }
 }
