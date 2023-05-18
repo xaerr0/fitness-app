@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .antMatchers("/css", "/js").permitAll()
                         //allow all requests to read recipes and reviews
-                        .antMatchers(HttpMethod.GET, "/generator", "/generated").permitAll()
+                        .antMatchers(HttpMethod.GET, "/generator", "/generated", "/register", "/login").permitAll()
                         //allow creation of new recipes and reviews
 //                        .antMatchers(HttpMethod.POST, "/generator", "/generated").permitAll()
                         //all other requests should be authenticated
