@@ -2,7 +2,7 @@ package com.example.fitnessapplication.controllers;
 
 import com.example.fitnessapplication.dto.WorkoutRequest;
 import com.example.fitnessapplication.models.*;
-import com.example.fitnessapplication.models.securitymodels.CustomUserDetails;
+import com.example.fitnessapplication.models.securitymodels.UserPrincipal;
 import com.example.fitnessapplication.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,10 @@ public class UserController {
     BodyGroupService bodyGroupService;
 
     @Autowired
-    CustomUserDetailsService userDetailsService;
+    UserPrincipalService userDetailsService;
+
+    @Autowired
+    ClientService clientService;
 
 
 
@@ -49,17 +52,18 @@ public class UserController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        CustomUserDetails user = new CustomUserDetails();
-        user.setUserMeta(new UserMeta());
+        UserPrincipal user = new UserPrincipal();
+        user.setUserMeta(new Client());
         model.addAttribute("user", user);
 
         return "/register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") CustomUserDetails user) {
+    public String registerUser(@ModelAttribute("user") UserPrincipal user) {
         userDetailsService.createNewUser(user);
-        return "redirect:/generator-test";
+        clientService.saveUser(user.getUserMeta());
+        return "redirect:/generator";
     }
 
     @GetMapping("/generator")
@@ -94,12 +98,12 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public CustomUserDetails getUser(Authentication authentication) {
-        return (CustomUserDetails) authentication.getPrincipal();
+    public UserPrincipal getUser(Authentication authentication) {
+        return (UserPrincipal) authentication.getPrincipal();
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> createNewUser(@RequestBody CustomUserDetails userDetails) {
+    public ResponseEntity<?> createNewUser(@RequestBody UserPrincipal userDetails) {
         try {
             return ResponseEntity.ok(userDetailsService.createNewUser(userDetails));
         } catch (IllegalStateException e) {
