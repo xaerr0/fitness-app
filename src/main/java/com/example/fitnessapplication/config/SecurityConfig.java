@@ -21,15 +21,15 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 //authorize all requests to access CSS and JavaScript
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/css", "/js").permitAll()
+                        .antMatchers("/static/css", "/js").permitAll()
                         //allow all requests to read recipes and reviews
                         .antMatchers(HttpMethod.GET, "/generator", "/generated", "/register", "/login").permitAll()
                         //allow creation of new recipes and reviews
 //                        .antMatchers(HttpMethod.POST, "/generator", "/generated").permitAll()
                         //all other requests should be authenticated
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll());
                 //users should log in with HTTP Basic.
-                .httpBasic(Customizer.withDefaults());
+
         return http.build();
     }
 
