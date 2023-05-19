@@ -10,7 +10,12 @@
     />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/register.css" />
+    <link th:href="@{/css/register.css}"
+          href="/css/register.css"
+          rel="stylesheet"
+          type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css"/>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -24,7 +29,7 @@
     />
   </head>
   <body>
-    <form action="#" th:action="@{/register}" th:object="${customUserDetails}" method="post">
+     <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <div class="container">
       <div class="scene">
         <div class="col-md-5 mx-auto my-4">
@@ -34,6 +39,7 @@
             <p class="slogan">It"s free and anyone can join!</p>
 
             <div class="md-form mat-2">
+              <input type="hidden" id="userId" th:value="${id}"/>
               <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="Username" required/>
               <label for="username">Username</label>
             </div>
@@ -57,7 +63,7 @@
 
             <div class="card-foter text-right">
               <button
-                type="button"
+                type="submit"
                 class="btn btn-outline-secondary"
                 style="width: 120px"
               >
@@ -68,7 +74,7 @@
         </div>
       </div>
     </div>
-  </form>
+   </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
