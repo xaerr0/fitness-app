@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(name = "user_meta")
-public class UserMeta {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +20,20 @@ public class UserMeta {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer age;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String address;
+
+    public Client(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
 }
