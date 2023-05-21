@@ -54,13 +54,13 @@ public class UserPrincipal implements UserDetails {
     private Collection<Role> authorities = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.PERSIST, optional = false)
-    private Client userMeta;
+    private Client client;
 
     public UserPrincipal(String username, String password, String email, Collection<Role> authorities, Client userMeta) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.authorities = authorities;
-        this.userMeta = userMeta;
+        this.client = userMeta;
     }
 }
