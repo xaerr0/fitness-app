@@ -27,30 +27,33 @@
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
     />
+    <!-- <script src="/scripts/script.js" defer></script> -->
   </head>
   <body>
      <form action="#" th:action="@{/register}" th:object="${user}" method="post">
-    <div class="container">
-      <div class="scene">
-        <div class="col-md-5 mx-auto my-4">
-          <div class="card-body text-center">
+    <div class="container" >
+            <input id='step2' type='checkbox'>
+
+      <div class="scene" id="part1">
+        <div class="col-md-5 mx-auto my-4" >
+          <div class="card-body text-center"  >
             <h1>Waist Management</h1>
             <h3 class="card-title">Create an account</h3>
-            <p class="slogan">It"s free and anyone can join!</p>
+            <p class="slogan">It's free and anyone can join!</p>
 
             <div class="md-form mat-2">
               <input type="hidden" id="userId" th:value="${id}"/>
-              <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="Username" required/>
+              <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="Username" />
               <label for="username">Username</label>
             </div>
 
             <div class="md-form mat-2">
-              <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Example@Email.com" required/>
+              <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Example@Email.com" />
               <label for="email">E-mail</label>
             </div>
 
             <div class="md-form mat-2">
-              <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="Password" required />
+              <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="Password"  />
               <label for="password">Password</label>
             </div>
 
@@ -60,6 +63,52 @@
 <!--              <input type="password" id="password2" class="form-control" placeholder="Confirm Password" required />-->
 <!--              <label for="password2">Password confirmation</label>-->
 <!--            </div>-->
+
+            <div class="card-foter text-right">
+             
+              <div
+                id="step2"
+                type="checkbox"
+                class="btn btn-outline-secondary"
+                style="width: 120px"
+                
+              >
+                <span>Sign up</span>
+              </div>
+            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </form>
+
+   <form action="#" th:action="@{/register}" th:object="${client}" method="post">
+    <div class="container">
+      <div class="scene" id="part2">
+        <div class="col-md-5 mx-auto my-4">
+          <div class="card-body text-center" >
+            <h1>Waist Management</h1>
+            <h3 class="card-title">Create an account</h3>
+            <p class="slogan">It's free and anyone can join!</p>
+
+            <div class="md-form mat-2">
+              <input type="hidden" id="userId" th:value="${id}"/>
+              <input type="text" id="firstName" class="form-control" th:field="*{firstName}" placeholder="First Name" required/>
+              <label for="firstName">First Name</label>
+            </div>
+
+            <div class="md-form mat-2">
+              <input type="text" id="lastName" class="form-control" th:field="*{lastName}" placeholder="Last Name" required/>
+              <label for="lastName">Last Name</label>
+            </div>
+
+            <div class="md-form mat-2">
+              <input type="number" id="age" min="0" max="100" class="form-control" th:field="*{age}" placeholder="Age" required />
+              <label for="age">Age</label>
+            </div>
+
 
             <div class="card-foter text-right">
               <button
@@ -74,7 +123,7 @@
         </div>
       </div>
     </div>
-   </form>
+    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

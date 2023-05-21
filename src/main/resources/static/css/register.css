@@ -5,7 +5,7 @@ body {
 }
 
 .card-body {
-  /* From https://css.glass */
+  /* Glass Effect */
 background: rgba(255, 255, 255, 0.16);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -13,9 +13,6 @@ backdrop-filter: blur(15px);
 -webkit-backdrop-filter: blur(15px);
 border: 2px solid rgba(255, 255, 255, 0.28);
 color: black;
-
-
-
 }
 
 .btn {
@@ -61,3 +58,44 @@ color: black;
 
 
 
+
+/* Multi-Part CSS */
+input[type=checkbox] {
+  position: absolute;
+ /* Position the checkbox in upper left corner */
+  opacity: 0;
+}
+/* Styling Parts */
+#part1, #part2, #part3 {
+  z-index: 2;
+  display: block;
+  height: auto;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+/* Hidden Parts */
+#part2, #part3 {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+/* Show Step 2 & Hide Step 1 */
+#step2:checked ~ #part2 {
+  opacity: 1;
+  height: auto;
+}
+#step2:checked ~ #part1 {
+  opacity: 0;
+  height: 0;
+  display: none;
+}
+/* Show Step 3 & Hide Step 2 */
+#step3:checked ~ #part3 {
+  opacity: 1;
+  height: auto;
+}
+#step3:checked ~ #part2 {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
