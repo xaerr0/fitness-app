@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/css/multistep.css">
+
+    <link th:href="@{/css/multistep.css}"
+          href="/css/multistep.css"
+          rel="stylesheet"
+          type="text/css"
+    />
+    <script src="/static/js/script.js" defer></script>
+    <script type="text/javascript" th:src="@{/js/script.js}" defer></script>
+
+
+</head>
+<body>
+<form data-multi-step class="multi-step-form" action="#" th:action="@{/register}" th:object="${user}" method="post">
+
+    <div class="card text-center" data-step>
+        <h1>Waist Management</h1>
+        <h3 class="card-title">Create an account</h3>
+        <p class="slogan">It's free and anyone can join!</p>
+        <div class="md-form mat-2">
+            <input type="hidden" id="userId" th:value="${id}"/>
+            <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="Username"/>
+            <label for="username">Username</label>
+        </div>
+
+        <div class="md-form mat-2">
+            <input type="email" id="email" class="form-control" th:field="*{email}"
+                   placeholder="Example@Email.com"/>
+            <label for="email">E-mail</label>
+        </div>
+
+        <div class="md-form mat-2">
+            <input type="password" id="password" class="form-control" th:field="*{password}"
+                   placeholder="Password"/>
+            <label for="password">Password</label>
+        </div>
+        <div class="card-foter text-right">
+            <button type="button" class="btn btn-outline-secondary"
+                    style="width: 120px" data-next>Next
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card text-center" data-step>
+        <h1>Waist Management</h1>
+        <h3 class="card-title">Create an account</h3>
+        <p class="slogan">It's free and anyone can join!</p>
+        <div class="md-form mat-2">
+<!--            <input type="hidden" id="userId" th:value="${client.id}"/>-->
+            <input type="text" id="firstName" class="form-control" th:field="*{client.firstName}"
+                   placeholder="First Name"/>
+            <label for="firstName">First Name</label>
+        </div>
+
+        <div class="md-form mat-2">
+            <input type="text" id="lastName" class="form-control" th:field="*{client.lastName}"
+                   placeholder="Last Name"/>
+            <label for="lastName">Last Name</label>
+        </div>
+
+        <div class="md-form mat-2">
+            <input type="number" id="age" min="0" max="100" class="form-control" th:field="*{client.age}"
+                   placeholder="Age"/>
+            <label for="age">Age</label>
+        </div>
+
+        <div class="card-foter text-right">
+            <button type="button" id="prev-btn" class="btn btn-outline-secondary"
+                    style="width: 120px" data-previous>Previous
+            </button>
+            <button type="submit" class="btn btn-outline-secondary"
+                    style="width: 120px">Register
+            </button>
+        </div>
+
+
+</form>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"
+></script>
+
+</body>
+</html>
