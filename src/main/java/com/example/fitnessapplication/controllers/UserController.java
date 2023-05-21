@@ -37,11 +37,10 @@ public class UserController {
     BodyGroupService bodyGroupService;
 
     @Autowired
-    UserPrincipalService userDetailsService;
+    UserPrincipalService userPrincipalService;
 
     @Autowired
     ClientService clientService;
-
 
 
 
@@ -53,16 +52,15 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
         UserPrincipal user = new UserPrincipal();
-        user.setUserMeta(new Client());
+        user.setClient(new Client());
         model.addAttribute("user", user);
-
-        return "/register";
+        return "/multistep";
     }
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserPrincipal user) {
-        userDetailsService.createNewUser(user);
-        clientService.saveUser(user.getUserMeta());
+        userPrincipalService.createNewUser(user);
+        clientService.saveUser(user.getClient());
         return "redirect:/generator";
     }
 
@@ -105,7 +103,7 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<?> createNewUser(@RequestBody UserPrincipal userDetails) {
         try {
-            return ResponseEntity.ok(userDetailsService.createNewUser(userDetails));
+            return ResponseEntity.ok(userPrincipalService.createNewUser(userDetails));
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {

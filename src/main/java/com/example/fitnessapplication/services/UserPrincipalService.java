@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -55,24 +56,13 @@ public class UserPrincipalService implements UserDetailsService {
         return userRepo.findByUsername(username);
     }
 
+    @Transactional
     public UserPrincipal createNewUser(UserPrincipal userPrincipal) {
-//        userDetails.setId(null);
-        userPrincipal.getAuthorities().forEach(a -> a.setId(null));
 
-        //override or set user settings to correct values
-        userPrincipal.setAccountNonExpired(true);
-        userPrincipal.setAccountNonLocked(true);
-        userPrincipal.setCredentialsNonExpired(true);
-        userPrincipal.setEnabled(true);
+        //set client id to be same as account created by user
+        userPrincipal.getClient().setEmail(userPrincipal.getEmail());
+
         userPrincipal.setAuthorities(Collections.singletonList(new Role(Role.Roles.ROLE_USER)));
-
-
-        userPrincipal.setUserMeta(new Client(
-                userPrincipal.getId(),
-                userPrincipal.getEmail()));
-
-
-
 
         checkPassword(userPrincipal.getPassword());
         userPrincipal.setPassword(encoder.encode(userPrincipal.getPassword()));
