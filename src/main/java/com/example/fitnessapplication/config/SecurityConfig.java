@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 //authorize all requests to access CSS and JavaScript
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/static/css", "/js").permitAll()
+                        .antMatchers("/static/css", "static/js").permitAll()
                         //allow all requests to read recipes and reviews
                         .antMatchers(HttpMethod.GET, "/generator", "/generated", "/register", "/login").permitAll()
                         //allow creation of new recipes and reviews
