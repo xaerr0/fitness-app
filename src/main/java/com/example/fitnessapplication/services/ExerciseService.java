@@ -1,7 +1,9 @@
 package com.example.fitnessapplication.services;
 
 import com.example.fitnessapplication.dto.WorkoutRequest;
-import com.example.fitnessapplication.models.*;
+import com.example.fitnessapplication.models.BodyPart;
+import com.example.fitnessapplication.models.Equipment;
+import com.example.fitnessapplication.models.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -72,6 +74,7 @@ public class ExerciseService {
         }
     }
 
+
     public Exercise getExercise(Long id) {
         // id is 4 digits i.e. 5 = 0005, 43 = 0043
         String paddedId = String.format("%04d", id);
@@ -86,6 +89,7 @@ public class ExerciseService {
             return null;
         }
     }
+
 
     public List<Exercise> getExerciseByName(String name) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/name/" + name)
@@ -135,7 +139,6 @@ public class ExerciseService {
     //Exercise by Target Muscle
     public List<Exercise> getByTargetMuscles(String target) {
         URI uri = UriComponentsBuilder.fromUriString("https://exercisedb.p.rapidapi.com/exercises/target/" + target)
-
                 .build()
                 .toUri();
 
@@ -203,9 +206,6 @@ public class ExerciseService {
 
         //if bodygroup = upper body then grab "these" targets?
 
-//
-
-
         List<String> bodyPartStrings = filteredBodyParts.stream()
                 .map(BodyPart::getName)
                 .collect(Collectors.toList());
@@ -213,8 +213,6 @@ public class ExerciseService {
         exerciseList = getExercisesByMultipleBodyParts(bodyPartStrings);
 //        List<Exercise> targetFilter = exerciseList.stream().filter(t -> t.getTarget()
 //                .equalsIgnoreCase(workoutRequest.getTarget().getName())).collect(Collectors.toList());
-
-
 
 
         //TODO Not 100% yet. logic works with even num of equipment
